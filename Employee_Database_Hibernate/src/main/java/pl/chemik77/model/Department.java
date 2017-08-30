@@ -29,7 +29,7 @@ public class Department {
 	@OneToOne(cascade = CascadeType.ALL)
 	private Contact contact;
 
-	@OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "department", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private List<Employee> employees;
 
 	public Department() {

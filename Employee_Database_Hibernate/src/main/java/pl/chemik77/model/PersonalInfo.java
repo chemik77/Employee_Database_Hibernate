@@ -27,7 +27,7 @@ public class PersonalInfo {
 	@Column(name = "last_update", columnDefinition = "datetime(0) DEFAULT NULL")
 	private LocalDateTime lastUpdate;
 
-	@OneToOne(mappedBy = "personalInfo")
+	@OneToOne
 	private Employee employee;
 
 	public PersonalInfo() {

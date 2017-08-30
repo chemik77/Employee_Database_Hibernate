@@ -37,7 +37,7 @@ public class Employee {
 	private Contact contact;
 	@ManyToOne
 	private Department department;
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
 	private PersonalInfo personalInfo;
 
 	public Employee() {
