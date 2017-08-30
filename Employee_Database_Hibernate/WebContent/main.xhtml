@@ -12,14 +12,26 @@
 		<div id="main">
 			<div id="tableEmployees">
 				<h:form>
-					<h:dataTable var="e" value="#{employeeController.employees}">
+					<h:dataTable var="e" value="#{employeeController.employees}" cellpadding="10" columnClasses="photoColumn,nameColumn,contactColumn">
 						<h:column>
-							<f:facet name="header">First name</f:facet>
-							<h:outputText value="#{e.firstName}" />
+							<h:graphicImage value="resources/#{e.personalInfo.photo}" height="100" />
 						</h:column>
 						<h:column>
-							<f:facet name="header">Last name</f:facet>
-							<h:outputText value="#{e.lastName}" />
+							<h:outputText value="#{e}" />
+							<br />
+							<h:outputText value="#{e.office}" />
+							<br />
+							<h:outputText value="#{e.department.name}" />
+							<br />
+							<br />
+						</h:column>
+						<h:column>
+							<h:outputText value="#{e.contact.email}" />
+							<br />
+							<h:outputText value="#{e.contact.phones.get(0)}" />
+							<br />
+							<br />
+							<br />
 						</h:column>
 					</h:dataTable>
 				</h:form>

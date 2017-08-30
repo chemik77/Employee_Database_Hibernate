@@ -1,0 +1,17 @@
+#main {
+	
+}
+
+td {
+	border-bottom: 1.0px solid #cccccc;
+}
+
+.photoColumn {
+	width: 100.0px;
+}
+.nameColumn {
+	width: 400.0px;
+}
+.contactColumn {
+	width: 600.0px;
+}

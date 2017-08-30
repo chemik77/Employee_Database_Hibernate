@@ -23,15 +23,19 @@ public class EmployeeDataManager {
 		entityManager.close();
 	}
 
+	// SELECT e FROM Employee e ORDER BY last_name;
 	public List<Employee> getAllEmployees() {
 		
 		connect();
 		
-		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-		CriteriaQuery<Employee> employeeQuery = criteriaBuilder.createQuery(Employee.class);
-		Root<Employee> employeeRoot = employeeQuery.from(Employee.class);
-		employeeQuery.select(employeeRoot);
-		TypedQuery<Employee> typedQuery = entityManager.createQuery(employeeQuery);
+		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+		CriteriaQuery<Employee> q = cb.createQuery(Employee.class);
+		
+		Root<Employee> e = q.from(Employee.class);
+		
+		q.select(e).orderBy(cb.asc(e.get("lastName")));
+		
+		TypedQuery<Employee> typedQuery = entityManager.createQuery(q);
 		List<Employee> employees = typedQuery.getResultList();
 
 		disconnect();
