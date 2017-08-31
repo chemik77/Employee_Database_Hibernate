@@ -19,6 +19,8 @@ public class EmployeeController {
 
 	private List<Employee> employees;
 	private List<String> letters;
+	
+	private String word;
 
 	// --------FIELDS CONFIG---------
 
@@ -55,6 +57,18 @@ public class EmployeeController {
 		} else {
 			employees = employeeDataManager.getEmployeesLetter(letter);
 		}
+		
+	}
+	
+	public void searchEmployee() {
+		if (employees != null) {
+			employees.clear();
+		}
+		if (word.equals("")) {
+			initEmployees();
+		} else {
+			employees = employeeDataManager.getEmployeesWord(word);
+		}
 	}
 
 	// --------GETTERS AND SETTERS----------------
@@ -73,6 +87,14 @@ public class EmployeeController {
 
 	public void setLetters(List<String> letters) {
 		this.letters = letters;
+	}
+
+	public String getWord() {
+		return word;
+	}
+
+	public void setWord(String word) {
+		this.word = word;
 	}
 
 }

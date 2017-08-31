@@ -13,6 +13,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Root;
 
+import pl.chemik77.database.EmployeeDataManager;
 import pl.chemik77.model.Address;
 import pl.chemik77.model.Contact;
 import pl.chemik77.model.Department;
@@ -28,9 +29,10 @@ public class Main {
 		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("manager1");
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-		//addExampleRows(entityManager);
-		//addExampleRows2(entityManager);
-		//test(entityManager);
+		// addExampleRows(entityManager);
+		// addExampleRows2(entityManager);
+		// test(entityManager);
+		// test2(entityManager);
 
 		entityManager.close();
 		entityManagerFactory.close();
@@ -137,7 +139,7 @@ public class Main {
 		entityManager.getTransaction().commit();
 
 	}
-	
+
 	private static void addExampleRows2(EntityManager entityManager) {
 
 		Department department = new Department();
@@ -239,23 +241,30 @@ public class Main {
 		entityManager.getTransaction().commit();
 
 	}
-	
+
 	private static void test(EntityManager entityManager) {
-		
+
 		String param = "k".concat("%");
-		
+
 		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
 		CriteriaQuery<Employee> q = cb.createQuery(Employee.class);
-		
+
 		Root<Employee> e = q.from(Employee.class);
 		Path<String> path = e.get("lastName");
-		
+
 		q.select(e).where(cb.like(path, param)).orderBy(cb.asc(path));
-		
+
 		TypedQuery<Employee> typedQuery = entityManager.createQuery(q);
 		List<Employee> employees = typedQuery.getResultList();
-		
+
 	}
 
+	private static void test2(EntityManager entityManager) {
+		EmployeeDataManager edm = new EmployeeDataManager();
 
+		List<Employee> employees = edm.getEmployeesWord("szub");
+		employees.forEach(em -> {
+			System.out.println(em);
+		});
+	}
 }

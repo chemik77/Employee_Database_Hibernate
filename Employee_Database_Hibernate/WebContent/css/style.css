@@ -2,8 +2,11 @@
 	
 }
 
-.letter {
-	border-bottom: 1px solid #DDD;
+#letters {
+	padding: 5px;
+}
+
+#searchPanel {
 	padding: 5px;
 }
 
