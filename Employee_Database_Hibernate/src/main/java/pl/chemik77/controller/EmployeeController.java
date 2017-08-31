@@ -1,5 +1,7 @@
 package pl.chemik77.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -16,6 +18,7 @@ public class EmployeeController {
 	// --------FIELDS----------------
 
 	private List<Employee> employees;
+	private List<String> letters;
 
 	// --------FIELDS CONFIG---------
 
@@ -26,8 +29,32 @@ public class EmployeeController {
 	@PostConstruct
 	private void init() {
 		employeeDataManager = new EmployeeDataManager();
-		employees = employeeDataManager.getAllEmployees();
+		initEmployees();
+		initLetters();
+	}
 
+	private void initEmployees() {
+		employees = employeeDataManager.getAllEmployees();
+	}
+
+	private void initLetters() {
+		letters = new ArrayList<>();
+		letters.clear();
+		String letter = "ABCDEFGHIJKLMNOPQRSTUWXYZ";
+		letters.addAll(Arrays.asList(letter.split("")));
+	}
+
+	// --------METHODS----------------
+
+	public void initEmployeesLetter(String letter) {
+		if (employees != null) {
+			employees.clear();
+		}
+		if (letter.equals("All")) {
+			initEmployees();
+		} else {
+			employees = employeeDataManager.getEmployeesLetter(letter);
+		}
 	}
 
 	// --------GETTERS AND SETTERS----------------
@@ -38,6 +65,14 @@ public class EmployeeController {
 
 	public void setEmployees(List<Employee> employees) {
 		this.employees = employees;
+	}
+
+	public List<String> getLetters() {
+		return letters;
+	}
+
+	public void setLetters(List<String> letters) {
+		this.letters = letters;
 	}
 
 }
