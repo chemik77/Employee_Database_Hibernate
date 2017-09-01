@@ -3,16 +3,50 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:h="http://xmlns.jcp.org/jsf/html">
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title></title>
-<link rel="stylesheet" href="css/style.css" type="text/css" />
+	<title>Employee Database</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css" />
 </h:head>
 <h:body>
-	<div id="wrapper">
-		<ui:include src="/header.xhtml" />
-		<ui:include src="/main.xhtml" />
-		<ui:include src="/footer.xhtml" />
-	</div>
+	<h:form>
+		<div id="wrapper">
+			<div id="header">
+				<ui:insert name="header">
+					<ui:include src="/WEB-INF/header.xhtml" />
+				</ui:insert>
+			</div>
+			<div id="menu">
+				<p:commandButton value="Employees" update="mainContainer">
+					<f:setPropertyActionListener value="employees"
+						target="#{pageController.action}" />
+				</p:commandButton>
+				<p:commandButton value="Departments" update="mainContainer">
+					<f:setPropertyActionListener value="departments"
+						target="#{pageController.action}" />
+				</p:commandButton>
+			</div>
+			<div id="main">
+				<h:panelGroup id="mainContainer">
+					<h:panelGroup rendered="#{pageController.action == 'employees'}">
+						<ui:insert name="main">
+							<ui:include src="/WEB-INF/employees.xhtml" />
+						</ui:insert>
+					</h:panelGroup>
+					<h:panelGroup rendered="#{pageController.action == 'departments'}">
+						<ui:insert name="main">
+							<ui:include src="/WEB-INF/departments.xhtml" />
+						</ui:insert>
+					</h:panelGroup>
+				</h:panelGroup>
+			</div>
+			<div id="footer">
+				<ui:insert name="footer">
+					<ui:include src="/WEB-INF/footer.xhtml" />
+				</ui:insert>
+			</div>
+		</div>
+	</h:form>
 </h:body>
 </html>
