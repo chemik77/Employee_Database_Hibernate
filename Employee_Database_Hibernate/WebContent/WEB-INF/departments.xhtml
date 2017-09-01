@@ -9,7 +9,25 @@
 </h:head>
 <h:body>
 	<ui:composition>
-			<h3>Departments</h3>
+		<h3>Departments</h3>
+		<h:form>
+			<h:dataTable var="d" value="#{departmentController.departments}"
+				cellpadding="10" columnClasses="nameColumn,contactColumn">
+				<h:column>
+					<h:outputText value="#{d.name}" />
+					<br />
+					<h:outputText value="Manager: " />
+					<h:outputText value="#{d.manager}" />
+					<br/>
+				</h:column>
+				<h:column>
+					<h:outputText value="#{d.contact.email}" />
+					<br />
+					<h:outputText value="#{d.contact.phones.get(0)}" />
+					<br/>
+				</h:column>
+			</h:dataTable>
+		</h:form>
 	</ui:composition>
 </h:body>
 </html>
