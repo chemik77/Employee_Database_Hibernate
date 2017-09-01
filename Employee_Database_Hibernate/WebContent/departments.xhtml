@@ -5,7 +5,7 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html">
 <h:head>
-	<title>Employee Database</title>
+	<title>Departments</title>
 	<link rel="stylesheet" href="css/style.css" type="text/css" />
 </h:head>
 <h:body>
@@ -14,7 +14,7 @@
 		<h3>Header</h3>
 	</div>
 	<div id="main">
-		<h3>Welcome</h3>
+		<h3>Departments</h3>
 
 		<h:form>
 
@@ -24,12 +24,30 @@
 				<h:commandButton action="addEmployee" value="+" />
 				<h:commandButton action="departments" value="Departments" />
 			</div>
-
-			<div id="content">
-				<h1>Welcome</h1>
-			</div>
-
 		</h:form>
+
+
+		<h:form>
+			<div id="content">
+				<h:dataTable var="d" value="#{departmentController.departments}"
+					cellpadding="10" columnClasses="nameColumn,contactColumn">
+					<h:column>
+						<h:outputText value="#{d.name}" />
+						<br />
+						<h:outputText value="Manager: " />
+						<h:outputText value="#{d.manager}" />
+						<br />
+					</h:column>
+					<h:column>
+						<h:outputText value="#{d.contact.email}" />
+						<br />
+						<h:outputText value="#{d.contact.phones.get(0)}" />
+						<br />
+					</h:column>
+				</h:dataTable>
+			</div>
+		</h:form>
+
 	</div>
 	<div id="footer">
 		<h3>Footer</h3>

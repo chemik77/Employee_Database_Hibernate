@@ -1,25 +1,38 @@
 package pl.chemik77.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class PageController {
 
-	private String action;
-	
+	private List<String> letters;
+
 	@PostConstruct
 	private void init() {
-		action = "employees";
+		initLetters();
 	}
 
-	public String getAction() {
-		return action;
+	private void initLetters() {
+		letters = new ArrayList<>();
+		letters.clear();
+		String letter = "ABCDEFGHIJKLMNOPQRSTUWXYZ";
+		letters.addAll(Arrays.asList(letter.split("")));
 	}
 
-	public void setAction(String action) {
-		this.action = action;
+
+	public List<String> getLetters() {
+		return letters;
 	}
+
+	public void setLetters(List<String> letters) {
+		this.letters = letters;
+	}
+
 }

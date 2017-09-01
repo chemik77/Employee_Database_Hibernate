@@ -1,25 +1,22 @@
 package pl.chemik77.controller;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
 import pl.chemik77.database.EmployeeDataManager;
 import pl.chemik77.model.Employee;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class EmployeeController {
 
 	// --------FIELDS----------------
 
 	private List<Employee> employees;
-	private List<String> letters;
-	
+
 	private String word;
 
 	// --------FIELDS CONFIG---------
@@ -32,18 +29,10 @@ public class EmployeeController {
 	private void init() {
 		employeeDataManager = new EmployeeDataManager();
 		initEmployees();
-		initLetters();
 	}
 
 	private void initEmployees() {
 		employees = employeeDataManager.getAllEmployees();
-	}
-
-	private void initLetters() {
-		letters = new ArrayList<>();
-		letters.clear();
-		String letter = "ABCDEFGHIJKLMNOPQRSTUWXYZ";
-		letters.addAll(Arrays.asList(letter.split("")));
 	}
 
 	// --------METHODS----------------
@@ -57,9 +46,9 @@ public class EmployeeController {
 		} else {
 			employees = employeeDataManager.getEmployeesLetter(letter);
 		}
-		
+
 	}
-	
+
 	public void searchEmployee() {
 		if (employees != null) {
 			employees.clear();
@@ -79,14 +68,6 @@ public class EmployeeController {
 
 	public void setEmployees(List<Employee> employees) {
 		this.employees = employees;
-	}
-
-	public List<String> getLetters() {
-		return letters;
-	}
-
-	public void setLetters(List<String> letters) {
-		this.letters = letters;
 	}
 
 	public String getWord() {

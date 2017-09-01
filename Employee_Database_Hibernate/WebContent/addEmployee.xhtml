@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Add employee</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css" />
+</h:head>
+<h:body>
+
+	<div id="header">
+		<h3>Header</h3>
+	</div>
+	<div id="main">
+		<h3>Enter new employee</h3>
+
+
+		<h:form>
+
+			<div id="menu">
+				<h:commandButton action="index" value="Home" />
+				<h:commandButton action="employees" value="Employees" />
+				<h:commandButton action="addEmployee" value="+" />
+				<h:commandButton action="departments" value="Departments" />
+			</div>
+		</h:form>
+
+		<h:form>
+			<div id="content">
+
+				<h:outputLabel value="First name" for="firstName" />
+				<h:inputText value="#{addEmployeeController.firstName}"
+					id="firstName" />
+				<br />
+				<h:outputLabel value="Last name" for="lastName" />
+				<h:inputText value="#{addEmployeeController.lastName}" id="lastName" />
+				<br />
+				<h:outputLabel value="Office" for="office" />
+				<h:inputText value="#{addEmployeeController.office}" id="office" />
+				<br />
+				<h:outputLabel value="Salary" for="salary" />
+				<h:inputText value="#{addEmployeeController.salary}" id="salary" />
+				<br />
+				<!-- <h:outputLabel value="Hire date" for="hireDate" /><h:inputText value="#{addEmployeeController.hireDate}" id="hireDate" /> -->
+				<br /> <br />
+				<h:outputLabel value="Street" for="street" />
+				<h:inputText value="#{addEmployeeController.street}" id="street" />
+				<br />
+				<h:outputLabel value="House No" for="houseNo" />
+				<h:inputText value="#{addEmployeeController.houseNo}" id="houseNo" />
+				<br />
+				<h:outputLabel value="Zip code" for="zipCode" />
+				<h:inputText value="#{addEmployeeController.zipCode}" id="zipCode" />
+				<br />
+				<h:outputLabel value="City" for="city" />
+				<h:inputText value="#{addEmployeeController.city}" id="city" />
+				<br />
+				<h:outputLabel value="Country" for="country" />
+				<h:inputText value="#{addEmployeeController.country}" id="country" />
+				<br /> <br />
+				<h:outputLabel value="Email" for="email" />
+				<h:inputText value="#{addEmployeeController.email}" id="email" />
+				<br />
+				<h:outputLabel value="Phone" for="phone" />
+				<h:inputText value="#{addEmployeeController.phone}" id="phone" />
+				<br /> <br />
+				<!-- <h:outputLabel value="Department" for="department"/><h:inputText value="#{addEmployeeController.department}" id="department" /> -->
+				<br /> <br />
+				<h:outputLabel value="Pesel" for="pesel" />
+				<h:inputText value="#{addEmployeeController.pesel}" id="pesel" />
+				<br />
+				<h:outputLabel value="Gender" for="gender" />
+				<h:inputText value="#{addEmployeeController.gender}" id="gender" />
+				<br />
+				<!-- <h:outputLabel value="Date of birth" for="birthDate" /><h:inputText value="#{addEmployeeController.birthDate}" id="birthDate" /> -->
+				<br />
+				<h:outputLabel value="Photo" for="photo" />
+				<h:inputText value="#{addEmployeeController.photo}" id="photo" />
+				<br />
+				<h:commandButton action="#{addEmployeeController.addEmployee()}"
+					value="add" />
+
+			</div>
+		</h:form>
+	</div>
+	<div id="footer">
+		<h3>Footer</h3>
+	</div>
+</h:body>
+</html>
