@@ -1,4 +1,4 @@
-package pl.chemik77.database;
+package pl.chemik77.database.dataManager;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import javax.persistence.criteria.Root;
 import pl.chemik77.database.utils.EMF;
 import pl.chemik77.model.Employee;
 
-public class EmployeeDataManager {
+public class EmployeeDM {
 
 	private EntityManager entityManager;
 
@@ -85,5 +85,6 @@ public class EmployeeDataManager {
 		disconnect();
 		return employees;
 	}
+	
 	
 }

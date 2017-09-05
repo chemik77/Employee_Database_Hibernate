@@ -1,12 +1,14 @@
 package pl.chemik77.controller;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import pl.chemik77.database.EmployeeDataManager;
+import pl.chemik77.database.dataManager.AddEmployeeDM;
 import pl.chemik77.model.*;
 
 @ManagedBean
@@ -35,15 +37,54 @@ public class AddEmployeeController {
 	private LocalDate birthDate;
 	private String photo;
 	
-	private EmployeeDataManager employeeDataManager;
+	private AddEmployeeDM addEmployeeDM;
 	
 	@PostConstruct
 	private void init() {
-		employeeDataManager = new EmployeeDataManager();
+		addEmployeeDM = new AddEmployeeDM();
 	}
 	
 	public void addEmployee() {
+		Employee employee = new Employee();
+		employee.setFirstName(firstName);
+		employee.setLastName(lastName);
+		employee.setOffice(office);
+		employee.setSalary(salary);
+		//employee.setHireDate(hireDate);
 		
+		Department department = new Department();
+		employee.setDepartment(department);
+		
+		Address address = new Address();
+		address.setStreet(street);
+		address.setHouseNo(houseNo);
+		address.setZipCode(zipCode);
+		address.setCity(city);
+		address.setCountry(country);
+		
+		employee.setAddress(address);
+		
+		Contact contact = new Contact();
+		contact.setEmail(email);
+		Phone phone = new Phone();
+		phone.setType("work");
+		phone.setNumber(this.phone);
+		List<Phone> phones = new ArrayList<>();
+		phones.add(phone);
+		contact.setPhones(phones);
+		
+		employee.setContact(contact);
+		
+		PersonalInfo personalInfo = new PersonalInfo();
+		personalInfo.setPesel(pesel);
+		personalInfo.setGender(gender);
+		//personalInfo.setBirthDate(birthDate);
+		personalInfo.setPhoto(photo);
+		
+		employee.setPersonalInfo(personalInfo);
+		personalInfo.setEmployee(employee);
+		
+		addEmployeeDM.addEmployee(employee, department);
 	}
 	
 

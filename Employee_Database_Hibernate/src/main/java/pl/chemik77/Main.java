@@ -13,7 +13,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Root;
 
-import pl.chemik77.database.EmployeeDataManager;
+import pl.chemik77.database.dataManager.EmployeeDM;
 import pl.chemik77.model.Address;
 import pl.chemik77.model.Contact;
 import pl.chemik77.model.Department;
@@ -260,7 +260,7 @@ public class Main {
 	}
 
 	private static void test2(EntityManager entityManager) {
-		EmployeeDataManager edm = new EmployeeDataManager();
+		EmployeeDM edm = new EmployeeDM();
 
 		List<Employee> employees = edm.getEmployeesWord("szub");
 		employees.forEach(em -> {

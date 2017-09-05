@@ -146,4 +146,10 @@ public class Employee {
 		return lastName + ", " + firstName;
 	}
 
+	public String toString2() {
+		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", office=" + office
+				+ ", salary=" + salary + ", hireDate=" + hireDate + ", createDate=" + createDate + ", lastUpdate="
+				+ lastUpdate + ", address=" + address + ", contact=" + contact + ", department=" + department
+				+ ", personalInfo=" + personalInfo + "]";
+	}
 }

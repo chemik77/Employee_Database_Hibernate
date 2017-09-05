@@ -6,7 +6,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import pl.chemik77.database.DepartmentDataManager;
+import pl.chemik77.database.dataManager.DepartmentDM;
 import pl.chemik77.model.Department;
 
 @ManagedBean
@@ -19,13 +19,13 @@ public class DepartmentController {
 
 	// --------FIELDS CONFIG---------
 
-	private DepartmentDataManager departmentDataManager;
+	private DepartmentDM departmentDataManager;
 
 	// --------INITIALIZE----------------
 
 	@PostConstruct
 	private void init() {
-		departmentDataManager = new DepartmentDataManager();
+		departmentDataManager = new DepartmentDM();
 		departments = departmentDataManager.getAllDepartments();
 	}
 

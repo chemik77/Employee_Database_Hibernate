@@ -6,7 +6,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import pl.chemik77.database.EmployeeDataManager;
+import pl.chemik77.database.dataManager.EmployeeDM;
 import pl.chemik77.model.Employee;
 
 @ManagedBean
@@ -21,13 +21,13 @@ public class EmployeeController {
 
 	// --------FIELDS CONFIG---------
 
-	private EmployeeDataManager employeeDataManager;
+	private EmployeeDM employeeDataManager;
 
 	// --------INITIALIZE----------------
 
 	@PostConstruct
 	private void init() {
-		employeeDataManager = new EmployeeDataManager();
+		employeeDataManager = new EmployeeDM();
 		initEmployees();
 	}
 

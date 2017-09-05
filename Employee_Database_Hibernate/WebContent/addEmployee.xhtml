@@ -73,7 +73,10 @@
 				<h:inputText value="#{addEmployeeController.pesel}" id="pesel" />
 				<br />
 				<h:outputLabel value="Gender" for="gender" />
-				<h:inputText value="#{addEmployeeController.gender}" id="gender" />
+				<h:selectOneRadio value="#{addEmployeeController.gender}" id="gender">
+				<f:selectItem itemValue="F" itemLabel="female" />
+				<f:selectItem itemValue="M" itemLabel="male" />
+				</h:selectOneRadio>
 				<br />
 				<!-- <h:outputLabel value="Date of birth" for="birthDate" /><h:inputText value="#{addEmployeeController.birthDate}" id="birthDate" /> -->
 				<br />

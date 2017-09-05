@@ -1,4 +1,4 @@
-package pl.chemik77.database;
+package pl.chemik77.database.dataManager;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import javax.persistence.criteria.Root;
 import pl.chemik77.database.utils.EMF;
 import pl.chemik77.model.Department;
 
-public class DepartmentDataManager {
+public class DepartmentDM {
 	private EntityManager entityManager;
 
 	private void connect() {
