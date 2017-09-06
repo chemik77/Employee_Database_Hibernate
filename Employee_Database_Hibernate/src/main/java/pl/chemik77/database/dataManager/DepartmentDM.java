@@ -12,6 +12,7 @@ import pl.chemik77.database.utils.EMF;
 import pl.chemik77.model.Department;
 
 public class DepartmentDM {
+	
 	private EntityManager entityManager;
 
 	private void connect() {
@@ -22,6 +23,7 @@ public class DepartmentDM {
 		entityManager.close();
 	}
 	
+	// SELECT d FROM Depratment d ORDER BY name;
 	public List<Department> getAllDepartments() {
 		connect();
 		
@@ -37,4 +39,23 @@ public class DepartmentDM {
 		disconnect();
 		return departments;
 	}
+	
+	// SELECT d FROM Department d WHERE name=?;
+	public Department getDepartmentByName(String name) {
+
+		connect();
+		
+		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+		CriteriaQuery<Department> q = cb.createQuery(Department.class);
+		
+		Root<Department> d = q.from(Department.class);
+		q.select(d).where(cb.equal(d.get("name"), name));
+		
+		TypedQuery<Department> typedQuery = entityManager.createQuery(q);
+		Department department = typedQuery.getSingleResult();
+		
+		disconnect();
+		return department;
+	}
+	
 }

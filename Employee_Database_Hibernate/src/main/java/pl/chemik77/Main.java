@@ -29,8 +29,8 @@ public class Main {
 		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("manager1");
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-		// addExampleRows(entityManager);
-		// addExampleRows2(entityManager);
+		addExampleRows(entityManager);
+		addExampleRows2(entityManager);
 		// test(entityManager);
 		// test2(entityManager);
 

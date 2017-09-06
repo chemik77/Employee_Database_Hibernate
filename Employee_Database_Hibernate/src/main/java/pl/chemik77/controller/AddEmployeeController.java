@@ -37,23 +37,28 @@ public class AddEmployeeController {
 	private LocalDate birthDate;
 	private String photo;
 	
+	private List<Department> departments;
+	
 	private AddEmployeeDM addEmployeeDM;
 	
 	@PostConstruct
 	private void init() {
 		addEmployeeDM = new AddEmployeeDM();
+		departments = addEmployeeDM.getAllDepartments();
 	}
 	
 	public void addEmployee() {
+		
 		Employee employee = new Employee();
 		employee.setFirstName(firstName);
 		employee.setLastName(lastName);
 		employee.setOffice(office);
 		employee.setSalary(salary);
 		employee.setHireDate(hireDate);
-		
-		Department department = new Department();
 		employee.setDepartment(department);
+		
+		List<Employee> employees = department.getEmployees();
+		employees.add(employee);
 		
 		Address address = new Address();
 		address.setStreet(street);
@@ -85,7 +90,7 @@ public class AddEmployeeController {
 		employee.setPersonalInfo(personalInfo);
 		personalInfo.setEmployee(employee);
 		
-		addEmployeeDM.addEmployee(employee, department);
+		addEmployeeDM.addEmployee(employee);
 	}
 	
 
@@ -223,6 +228,14 @@ public class AddEmployeeController {
 
 	public void setPhoto(String photo) {
 		this.photo = photo;
+	}
+
+	public List<Department> getDepartments() {
+		return departments;
+	}
+
+	public void setDepartments(List<Department> departments) {
+		this.departments = departments;
 	}
 
 }

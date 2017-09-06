@@ -69,7 +69,17 @@
 				<br />
 				<h:outputLabel value="Phone" for="phone" />
 				<h:inputText value="#{addEmployeeController.phone}" id="phone" />
-				<!-- <h:outputLabel value="Department" for="department"/><h:inputText value="#{addEmployeeController.department}" id="department" /> -->
+				<br /> <br />
+
+				<h:outputLabel value="Department" for="department" />
+				<!-- <h:selectOneMenu value="#{addEmployeeController.department}"
+					id="department" converter="departmentConverter">
+					<f:selectItems value="#{addEmployeeController.departments}"
+						converter="departmentConverter" />
+				</h:selectOneMenu> -->
+				<h:inputText value="#{addEmployeeController.department}"
+					id="department" converter="departmentConverter" />
+
 				<br /> <br />
 				<h:outputLabel value="Pesel" for="pesel" />
 				<h:inputText value="#{addEmployeeController.pesel}" id="pesel" />
