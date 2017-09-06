@@ -50,7 +50,7 @@ public class AddEmployeeController {
 		employee.setLastName(lastName);
 		employee.setOffice(office);
 		employee.setSalary(salary);
-		//employee.setHireDate(hireDate);
+		employee.setHireDate(hireDate);
 		
 		Department department = new Department();
 		employee.setDepartment(department);
@@ -78,7 +78,8 @@ public class AddEmployeeController {
 		PersonalInfo personalInfo = new PersonalInfo();
 		personalInfo.setPesel(pesel);
 		personalInfo.setGender(gender);
-		//personalInfo.setBirthDate(birthDate);
+		personalInfo.setBirthDate(birthDate);
+		photo += ".png";
 		personalInfo.setPhoto(photo);
 		
 		employee.setPersonalInfo(personalInfo);
