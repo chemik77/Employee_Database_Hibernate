@@ -14,14 +14,13 @@ public class DepartmentConverter implements Converter {
 	@Override
 	public Object getAsObject(FacesContext arg0, UIComponent arg1, String string) {
 		DepartmentDM departmentDM = new DepartmentDM();
-		Department department = departmentDM.getDepartmentByName(string);
-		return department;
+		return departmentDM.getDepartmentByName(string);
 	}
 
 	@Override
 	public String getAsString(FacesContext arg0, UIComponent arg1, Object object) {
 		Department department = (Department) object;
-		return department.toString();
+		return department.getName();
 	}
 
 }

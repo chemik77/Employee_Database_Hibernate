@@ -72,14 +72,12 @@
 				<br /> <br />
 
 				<h:outputLabel value="Department" for="department" />
-				<!-- <h:selectOneMenu value="#{addEmployeeController.department}"
-					id="department" converter="departmentConverter">
-					<f:selectItems value="#{addEmployeeController.departments}"
-						converter="departmentConverter" />
-				</h:selectOneMenu> -->
-				<h:inputText value="#{addEmployeeController.department}"
-					id="department" converter="departmentConverter" />
 
+				<h:selectOneMenu value="#{addEmployeeController.department}"
+					id="department">
+					<f:selectItems value="#{addEmployeeController.departments}" />
+					<f:converter converterId="departmentConverter" />
+				</h:selectOneMenu>
 				<br /> <br />
 				<h:outputLabel value="Pesel" for="pesel" />
 				<h:inputText value="#{addEmployeeController.pesel}" id="pesel" />
@@ -105,6 +103,7 @@
 					value="Add employee" />
 
 			</div>
+			<h:messages />
 		</h:form>
 	</div>
 	<div id="footer">

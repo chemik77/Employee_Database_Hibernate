@@ -103,4 +103,67 @@ public class PersonalInfo {
 	public String toString() {
 		return "PersonalInfo [id=" + id + ", pesel=" + pesel + ", gender=" + gender + "]";
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((birthDate == null) ? 0 : birthDate.hashCode());
+		result = prime * result + ((employee == null) ? 0 : employee.hashCode());
+		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((pesel == null) ? 0 : pesel.hashCode());
+		result = prime * result + ((photo == null) ? 0 : photo.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof PersonalInfo)) {
+			return false;
+		}
+		PersonalInfo other = (PersonalInfo) obj;
+		if (birthDate == null) {
+			if (other.birthDate != null) {
+				return false;
+			}
+		} else if (!birthDate.equals(other.birthDate)) {
+			return false;
+		}
+		if (employee == null) {
+			if (other.employee != null) {
+				return false;
+			}
+		} else if (!employee.equals(other.employee)) {
+			return false;
+		}
+		if (gender != other.gender) {
+			return false;
+		}
+		if (id != other.id) {
+			return false;
+		}
+		if (pesel == null) {
+			if (other.pesel != null) {
+				return false;
+			}
+		} else if (!pesel.equals(other.pesel)) {
+			return false;
+		}
+		if (photo == null) {
+			if (other.photo != null) {
+				return false;
+			}
+		} else if (!photo.equals(other.photo)) {
+			return false;
+		}
+		return true;
+	}
+
 }

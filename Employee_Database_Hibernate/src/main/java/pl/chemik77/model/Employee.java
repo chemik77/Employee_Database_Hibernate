@@ -146,10 +146,98 @@ public class Employee {
 		return lastName + ", " + firstName;
 	}
 
-	public String toString2() {
-		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", office=" + office
-				+ ", salary=" + salary + ", hireDate=" + hireDate + ", createDate=" + createDate + ", lastUpdate="
-				+ lastUpdate + ", address=" + address + ", contact=" + contact + ", department=" + department
-				+ ", personalInfo=" + personalInfo + "]";
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((address == null) ? 0 : address.hashCode());
+		result = prime * result + ((contact == null) ? 0 : contact.hashCode());
+		result = prime * result + ((department == null) ? 0 : department.hashCode());
+		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+		result = prime * result + ((hireDate == null) ? 0 : hireDate.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+		result = prime * result + ((office == null) ? 0 : office.hashCode());
+		result = prime * result + ((personalInfo == null) ? 0 : personalInfo.hashCode());
+		result = prime * result + salary;
+		return result;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof Employee)) {
+			return false;
+		}
+		Employee other = (Employee) obj;
+		if (address == null) {
+			if (other.address != null) {
+				return false;
+			}
+		} else if (!address.equals(other.address)) {
+			return false;
+		}
+		if (contact == null) {
+			if (other.contact != null) {
+				return false;
+			}
+		} else if (!contact.equals(other.contact)) {
+			return false;
+		}
+		if (department == null) {
+			if (other.department != null) {
+				return false;
+			}
+		} else if (!department.equals(other.department)) {
+			return false;
+		}
+		if (firstName == null) {
+			if (other.firstName != null) {
+				return false;
+			}
+		} else if (!firstName.equals(other.firstName)) {
+			return false;
+		}
+		if (hireDate == null) {
+			if (other.hireDate != null) {
+				return false;
+			}
+		} else if (!hireDate.equals(other.hireDate)) {
+			return false;
+		}
+		if (id != other.id) {
+			return false;
+		}
+		if (lastName == null) {
+			if (other.lastName != null) {
+				return false;
+			}
+		} else if (!lastName.equals(other.lastName)) {
+			return false;
+		}
+		if (office == null) {
+			if (other.office != null) {
+				return false;
+			}
+		} else if (!office.equals(other.office)) {
+			return false;
+		}
+		if (personalInfo == null) {
+			if (other.personalInfo != null) {
+				return false;
+			}
+		} else if (!personalInfo.equals(other.personalInfo)) {
+			return false;
+		}
+		if (salary != other.salary) {
+			return false;
+		}
+		return true;
+	}
+
 }

@@ -24,30 +24,30 @@ public class AddEmployeeDM {
 		entityManager.close();
 	}
 
-	// INSERT INTO employees
+	// INSERT INTO employee
 	public void addEmployee(Employee employee) {
 		connect();
-		 
+
 		entityManager.getTransaction().begin();
 		entityManager.persist(employee);
 		entityManager.getTransaction().commit();
-		
+
 		disconnect();
 	}
-	
+
 	// SELECT d FROM Department d ORDER BY name;
 	public List<Department> getAllDepartments() {
 		connect();
-		
+
 		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
 		CriteriaQuery<Department> q = cb.createQuery(Department.class);
-		
+
 		Root<Department> d = q.from(Department.class);
 		q.select(d).orderBy(cb.asc(d.get("name")));
-		
+
 		TypedQuery<Department> typedQuery = entityManager.createQuery(q);
 		List<Department> departments = typedQuery.getResultList();
-		
+
 		disconnect();
 		return departments;
 	}

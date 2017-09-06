@@ -15,6 +15,8 @@ import pl.chemik77.model.*;
 @ViewScoped
 public class AddEmployeeController {
 
+	// --------FIELDS----------------
+	
 	private String firstName;
 	private String lastName;
 	private String office;
@@ -30,22 +32,28 @@ public class AddEmployeeController {
 	private String email;
 	private String phone;
 
-	private Department department;
-
 	private String pesel;
 	private Gender gender;
 	private LocalDate birthDate;
 	private String photo;
+
+	private Department department;
 	
 	private List<Department> departments;
 	
+	// --------FIELDS CONFIG---------
+	
 	private AddEmployeeDM addEmployeeDM;
+	
+	// --------INITIALIZE----------------
 	
 	@PostConstruct
 	private void init() {
 		addEmployeeDM = new AddEmployeeDM();
 		departments = addEmployeeDM.getAllDepartments();
 	}
+
+	// --------METHODS----------------
 	
 	public void addEmployee() {
 		
@@ -91,8 +99,10 @@ public class AddEmployeeController {
 		personalInfo.setEmployee(employee);
 		
 		addEmployeeDM.addEmployee(employee);
+		
 	}
 	
+	// --------GETTERS AND SETTERS----------------
 
 	public String getFirstName() {
 		return firstName;
