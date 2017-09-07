@@ -32,21 +32,24 @@
 
 		<h:form>
 			<div id="content">
+				<h:panelGrid columns="2" cellpadding="2">
+					<h:outputLabel value="Name" for="name" />
+					<h:inputText value="#{addDepartmentController.name}" id="name" />
+					
+					<h:outputLabel value="Manager" for="manager" />
+					<h:inputText value="#{addDepartmentController.manager}"
+						id="manager" pt:placeholder="Nazwisko Imię" />
 
-				<h:outputLabel value="Name" for="name" />
-				<h:inputText value="#{addDepartmentController.name}" id="name" />
-				<br />
-				<h:outputLabel value="Manager" for="manager" />
-				<h:inputText value="#{addDepartmentController.manager}" id="manager" pt:placeholder="Nazwisko Imię" />
-				<br />
-				<h:outputLabel value="Email" for="email" />
-				<h:inputText value="#{addDepartmentController.email}" id="email" />
-				<br />
-				<h:outputLabel value="Phone" for="phone" />
-				<h:inputText value="#{addDepartmentController.phone}" id="phone" />
-				<br /> <br />
-				<h:commandButton action="#{addDepartmentController.addDepartment()}" value="Add department" />
-
+					<h:outputLabel value="Email" for="email" />
+					<h:inputText value="#{addDepartmentController.email}" id="email" />
+					
+					<h:outputLabel value="Phone" for="phone" />
+					<h:inputText value="#{addDepartmentController.phone}" id="phone" />
+					
+					<h:commandButton
+						action="#{addDepartmentController.addDepartment()}"
+						value="Add department" />
+				</h:panelGrid>
 			</div>
 			<h:messages />
 		</h:form>

@@ -33,76 +33,80 @@
 		<h:form>
 			<div id="content">
 
-				<h:outputLabel value="First name" for="firstName" />
-				<h:inputText value="#{addEmployeeController.firstName}"
-					id="firstName" />
-				<br />
-				<h:outputLabel value="Last name" for="lastName" />
-				<h:inputText value="#{addEmployeeController.lastName}" id="lastName" />
-				<br />
-				<h:outputLabel value="Office" for="office" />
-				<h:inputText value="#{addEmployeeController.office}" id="office" />
-				<br />
-				<h:outputLabel value="Salary" for="salary" />
-				<h:inputText value="#{addEmployeeController.salary}" id="salary" />
-				<br />
-				<h:outputLabel value="Hire date" for="hireDate" />
-				<h:inputText value="#{addEmployeeController.hireDate}" id="hireDate"
-					converter="localDateConverter" pt:placeholder="yyyy-MM-dd" />
-				<br /> <br />
-				<h:outputLabel value="Street" for="street" />
-				<h:inputText value="#{addEmployeeController.street}" id="street" />
-				<br />
-				<h:outputLabel value="House No" for="houseNo" />
-				<h:inputText value="#{addEmployeeController.houseNo}" id="houseNo" />
-				<br />
-				<h:outputLabel value="Zip code" for="zipCode" />
-				<h:inputText value="#{addEmployeeController.zipCode}" id="zipCode" />
-				<br />
-				<h:outputLabel value="City" for="city" />
-				<h:inputText value="#{addEmployeeController.city}" id="city" />
-				<br />
-				<h:outputLabel value="Country" for="country" />
-				<h:inputText value="#{addEmployeeController.country}" id="country" />
-				<br /> <br />
-				<h:outputLabel value="Email" for="email" />
-				<h:inputText value="#{addEmployeeController.email}" id="email" />
-				<br />
-				<h:outputLabel value="Phone" for="phone" />
-				<h:inputText value="#{addEmployeeController.phone}" id="phone" />
-				<br /> <br />
+				<h:panelGrid columns="3" cellpadding="2" >
+					<h:outputLabel value="First name" for="firstName" />
+					<h:inputText value="#{addEmployeeController.firstName}"
+						id="firstName" />
+					<br />
+					<h:outputLabel value="Last name" for="lastName" />
+					<h:inputText value="#{addEmployeeController.lastName}"
+						id="lastName" />
+					<br />
+					<h:outputLabel value="Office" for="office" />
+					<h:inputText value="#{addEmployeeController.office}" id="office" />
+					<br />
+					<h:outputLabel value="Salary" for="salary" />
+					<h:inputText value="#{addEmployeeController.salary}" id="salary" />
+					<br/>
+					<h:outputLabel value="Hire date" for="hireDate" />
+					<h:inputText value="#{addEmployeeController.hireDate}"
+						id="hireDate" converter="localDateConverter"
+						pt:placeholder="yyyy-MM-dd" />
+					<br />
+					<h:outputLabel value="Street" for="street" />
+					<h:inputText value="#{addEmployeeController.street}" id="street" />
+					<br />
+					<h:outputLabel value="House No" for="houseNo" />
+					<h:inputText value="#{addEmployeeController.houseNo}" id="houseNo" />
+					<br />
+					<h:outputLabel value="Zip code" for="zipCode" />
+					<h:inputText value="#{addEmployeeController.zipCode}" id="zipCode" />
+					<br />
+					<h:outputLabel value="City" for="city" />
+					<h:inputText value="#{addEmployeeController.city}" id="city" />
+					<br />
+					<h:outputLabel value="Country" for="country" />
+					<h:inputText value="#{addEmployeeController.country}" id="country" />
+					<br />
+					<h:outputLabel value="Email" for="email" />
+					<h:inputText value="#{addEmployeeController.email}" id="email" />
+					<br />
+					<h:outputLabel value="Phone" for="phone" />
+					<h:inputText value="#{addEmployeeController.phone}" id="phone" />
+					<br />
 
-				<h:outputLabel value="Department" for="department" />
+					<h:outputLabel value="Department" for="department" />
 
-				<h:selectOneMenu value="#{addEmployeeController.department}"
-					id="department">
-					<f:selectItems value="#{addEmployeeController.departments}" />
-					<f:converter converterId="departmentConverter" />
-				</h:selectOneMenu>
-				<br /> <br />
-				<h:outputLabel value="Pesel" for="pesel" />
-				<h:inputText value="#{addEmployeeController.pesel}" id="pesel" />
-				<br />
-				<h:outputLabel value="Gender" for="gender" />
-				<h:selectOneRadio value="#{addEmployeeController.gender}"
-					id="gender">
-					<f:selectItem itemValue="F" itemLabel="female" />
-					<f:selectItem itemValue="M" itemLabel="male" />
-				</h:selectOneRadio>
-				<br />
-				<h:outputLabel value="Date of birth" for="birthDate" />
-				<h:inputText value="#{addEmployeeController.birthDate}"
-					id="birthDate" converter="localDateConverter"
-					pt:placeholder="yyyy-MM-dd" />
-				<br />
-				<h:outputLabel value="Photo" for="photo" />
-				<h:inputText value="#{addEmployeeController.photo}" id="photo"
-					pt:placeholder="nazwisko_imie" />
-				<h:outputText value=".png" />
-				<br /> <br />
-				<h:commandButton action="#{addEmployeeController.addEmployee()}"
-					value="Add employee" />
+					<h:selectOneMenu value="#{addEmployeeController.department}"
+						id="department">
+						<f:selectItems value="#{addEmployeeController.departments}" />
+						<f:converter converterId="departmentConverter" />
+					</h:selectOneMenu>
+					<br />
+					<h:outputLabel value="Pesel" for="pesel" />
+					<h:inputText value="#{addEmployeeController.pesel}" id="pesel" />
+					<br />
+					<h:outputLabel value="Gender" for="gender" />
+					<h:selectOneRadio value="#{addEmployeeController.gender}"
+						id="gender">
+						<f:selectItem itemValue="F" itemLabel="female" />
+						<f:selectItem itemValue="M" itemLabel="male" />
+					</h:selectOneRadio>
+					<br />
+					<h:outputLabel value="Date of birth" for="birthDate" />
+					<h:inputText value="#{addEmployeeController.birthDate}"
+						id="birthDate" converter="localDateConverter"
+						pt:placeholder="yyyy-MM-dd" />
+					<br />
+					<h:outputLabel value="Photo" for="photo" />
+					<h:inputText value="#{addEmployeeController.photo}" id="photo"
+						pt:placeholder="nazwisko_imie" />
+					<h:outputText value=".png" />
 
+
+					<h:commandButton action="#{addEmployeeController.addEmployee()}"
+						value="Add employee" />
+				</h:panelGrid>
 			</div>
 			<h:messages />
 		</h:form>
