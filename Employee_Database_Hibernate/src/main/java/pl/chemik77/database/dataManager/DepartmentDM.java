@@ -23,7 +23,7 @@ public class DepartmentDM {
 		entityManager.close();
 	}
 	
-	// SELECT d FROM Depratment d ORDER BY name;
+	// SELECT d FROM Depratment d ORDER BY name
 	public List<Department> getAllDepartments() {
 		connect();
 		
@@ -40,7 +40,7 @@ public class DepartmentDM {
 		return departments;
 	}
 	
-	// SELECT d FROM Department d WHERE name=?;
+	// SELECT d FROM Department d WHERE name=?
 	public Department getDepartmentByName(String name) {
 
 		connect();
