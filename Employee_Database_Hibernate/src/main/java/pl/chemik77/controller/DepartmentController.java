@@ -28,6 +28,8 @@ public class DepartmentController {
 		departmentDataManager = new DepartmentDM();
 		departments = departmentDataManager.getAllDepartments();
 	}
+	
+	// --------METHODS----------------
 
 	// --------GETTERS AND SETTERS----------------
 

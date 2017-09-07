@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:h="http://xmlns.jcp.org/jsf/html">
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>Departments</title>
 	<link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -30,22 +31,23 @@
 
 		<h:form>
 			<div id="content">
-				<h:dataTable var="d" value="#{departmentController.departments}"
-					cellpadding="10" columnClasses="nameColumn,contactColumn">
-					<h:column>
+				<p:dataTable id="departmentsTable" var="d"
+					value="#{departmentController.departments}"
+					columnClasses="nameColumn,contactColumn" >
+					<p:column>
 						<h:outputText value="#{d.name}" />
 						<br />
 						<h:outputText value="Manager: " />
 						<h:outputText value="#{d.manager}" />
 						<br />
-					</h:column>
-					<h:column>
+					</p:column>
+					<p:column>
 						<h:outputText value="#{d.contact.email}" />
 						<br />
 						<h:outputText value="#{d.contact.phones.get(0)}" />
 						<br />
-					</h:column>
-				</h:dataTable>
+					</p:column>
+				</p:dataTable>
 			</div>
 		</h:form>
 
