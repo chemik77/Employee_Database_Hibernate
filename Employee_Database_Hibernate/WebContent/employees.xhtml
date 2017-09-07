@@ -20,11 +20,11 @@
 		<h:form>
 
 			<div id="menu">
-				<h:commandButton action="index" value="Home" />
-				<h:commandButton action="employees" value="Employees" />
-				<h:commandButton action="addEmployee" value="+" />
-				<h:commandButton action="departments" value="Departments" />
-				<h:commandButton action="addDepartment" value="+" />
+				<p:button outcome="index" value="Home" />
+				<p:button outcome="employees" value="Employees" />
+				<p:button outcome="addEmployee" value="+" />
+				<p:button outcome="departments" value="Departments" />
+				<p:button outcome="addDepartment" value="+" />
 			</div>
 
 			<div id="content">
@@ -48,7 +48,7 @@
 
 				<p:dataTable var="e" value="#{employeeController.employees}"
 					reflow="true" rows="4" paginator="true" columnClasses="photoColumn,nameColumn,contactColumn" >
-					<p:column>
+					<p:column width="150" >
 						<h:graphicImage value="resources/photos/#{e.personalInfo.photo}"
 							height="100" />
 					</p:column>

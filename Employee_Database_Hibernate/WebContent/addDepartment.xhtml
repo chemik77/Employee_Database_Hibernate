@@ -22,32 +22,32 @@
 		<h:form>
 
 			<div id="menu">
-				<h:commandButton action="index" value="Home" />
-				<h:commandButton action="employees" value="Employees" />
-				<h:commandButton action="addEmployee" value="+" />
-				<h:commandButton action="departments" value="Departments" />
-				<h:commandButton action="addDepartment" value="+" />
+				<p:button outcome="index" value="Home" />
+				<p:button outcome="employees" value="Employees" />
+				<p:button outcome="addEmployee" value="+" />
+				<p:button outcome="departments" value="Departments" />
+				<p:button outcome="addDepartment" value="+" />
 			</div>
 		</h:form>
 
 		<h:form>
 			<div id="content">
 				<h:panelGrid columns="2" cellpadding="2">
-					<h:outputLabel value="Name" for="name" />
-					<h:inputText value="#{addDepartmentController.name}" id="name" />
+					<p:outputLabel value="Name" for="name" />
+					<p:inputText value="#{addDepartmentController.name}" id="name" />
 					
-					<h:outputLabel value="Manager" for="manager" />
-					<h:inputText value="#{addDepartmentController.manager}"
+					<p:outputLabel value="Manager" for="manager" />
+					<p:inputText value="#{addDepartmentController.manager}"
 						id="manager" pt:placeholder="Nazwisko Imię" />
 
-					<h:outputLabel value="Email" for="email" />
-					<h:inputText value="#{addDepartmentController.email}" id="email" />
+					<p:outputLabel value="Email" for="email" />
+					<p:inputText value="#{addDepartmentController.email}" id="email" />
 					
-					<h:outputLabel value="Phone" for="phone" />
-					<h:inputText value="#{addDepartmentController.phone}" id="phone" />
+					<p:outputLabel value="Phone" for="phone" />
+					<p:inputText value="#{addDepartmentController.phone}" id="phone" />
 					
-					<h:commandButton
-						action="#{addDepartmentController.addDepartment()}"
+					<p:commandButton
+						actionListener="#{addDepartmentController.addDepartment()}"
 						value="Add department" />
 				</h:panelGrid>
 			</div>

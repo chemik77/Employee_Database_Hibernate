@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:h="http://xmlns.jcp.org/jsf/html">
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>Employee Database</title>
 	<link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -19,15 +20,19 @@
 		<h:form>
 
 			<div id="menu">
-				<h:commandButton action="index" value="Home" />
-				<h:commandButton action="employees" value="Employees" />
-				<h:commandButton action="addEmployee" value="+" />
-				<h:commandButton action="departments" value="Departments" />
-				<h:commandButton action="addDepartment" value="+" />
+				<p:button outcome="index" value="Home" />
+				<p:button outcome="employees" value="Employees" />
+				<p:button outcome="addEmployee" value="+" />
+				<p:button outcome="departments" value="Departments" />
+				<p:button outcome="addDepartment" value="+" />
 			</div>
 
 			<div id="content">
 				<h1>Welcome</h1>
+				<p:link outcome="employees" value="Show employees" /><br/><br/>
+				<p:link outcome="addEmployee" value="Add new employee" /><br/><br/>
+				<p:link outcome="departments" value="Show departments" /><br/><br/>
+				<p:link outcome="addDepartment" value="Add new department" />
 			</div>
 
 		</h:form>
