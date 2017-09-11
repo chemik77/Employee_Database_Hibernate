@@ -23,7 +23,6 @@ public class AddDepartmentController {
 	private String email;
 	private String phone;
 
-	
 	// --------FIELDS CONFIG---------
 	private AddDepartmentDM addDepartmentDM;
 

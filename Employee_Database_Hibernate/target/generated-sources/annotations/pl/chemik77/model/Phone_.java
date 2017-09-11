@@ -11,6 +11,7 @@ public abstract class Phone_ {
 
 	public static volatile SingularAttribute<Phone, String> number;
 	public static volatile SingularAttribute<Phone, LocalDateTime> lastUpdate;
+	public static volatile SingularAttribute<Phone, Contact> contact;
 	public static volatile SingularAttribute<Phone, Integer> id;
 	public static volatile SingularAttribute<Phone, String> type;
 	public static volatile SingularAttribute<Phone, LocalDateTime> createDate;

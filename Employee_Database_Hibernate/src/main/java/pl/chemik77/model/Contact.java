@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Contact {
@@ -24,7 +25,12 @@ public class Contact {
 	@Column(name = "last_update", columnDefinition = "datetime(0) DEFAULT NULL")
 	private LocalDateTime lastUpdate;
 
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+	@OneToOne
+	private Department department;
+	@OneToOne
+	private Employee employee;
+
+	@OneToMany(mappedBy = "contact", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	private List<Phone> phones;
 
 	public Contact() {
@@ -70,6 +76,22 @@ public class Contact {
 
 	public void setPhones(List<Phone> phones) {
 		this.phones = phones;
+	}
+
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 
 	@Override

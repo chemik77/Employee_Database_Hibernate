@@ -1,4 +1,4 @@
-package pl.chemik77.database.dataManager;
+package pl.chemik77.model;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -55,7 +55,12 @@ public class EmployeeTest {
 		utx.begin();
 		em.joinTransaction();
 		System.out.println("Dumping old records...");
-		em.createQuery("delete from Employee").executeUpdate();
+		em.createQuery("DELETE FROM PersonalInfo").executeUpdate();
+		em.createQuery("DELETE FROM Phone").executeUpdate();
+		em.createQuery("DELETE FROM Address").executeUpdate();
+		em.createQuery("DELETE FROM Contact").executeUpdate();
+		em.createQuery("DELETE FROM Employee").executeUpdate();
+		em.createQuery("DELETE FROM Department").executeUpdate();
 		utx.commit();
 	}
 

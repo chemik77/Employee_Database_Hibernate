@@ -31,10 +31,12 @@ public class Employee {
 	@Column(name = "last_update", columnDefinition = "datetime(0) DEFAULT NULL")
 	private LocalDateTime lastUpdate;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Address address;
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Contact contact;
+	@OneToOne
+	private Department department_manager;
 	@ManyToOne
 	private Department department;
 	@OneToOne(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -139,6 +141,14 @@ public class Employee {
 
 	public void setPersonalInfo(PersonalInfo personalInfo) {
 		this.personalInfo = personalInfo;
+	}
+
+	public Department getDepartment_manager() {
+		return department_manager;
+	}
+
+	public void setDepartment_manager(Department department_manager) {
+		this.department_manager = department_manager;
 	}
 
 	@Override

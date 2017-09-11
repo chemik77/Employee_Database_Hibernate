@@ -13,6 +13,8 @@ public abstract class Contact_ {
 	public static volatile SingularAttribute<Contact, LocalDateTime> lastUpdate;
 	public static volatile ListAttribute<Contact, Phone> phones;
 	public static volatile SingularAttribute<Contact, Integer> id;
+	public static volatile SingularAttribute<Contact, Department> department;
+	public static volatile SingularAttribute<Contact, Employee> employee;
 	public static volatile SingularAttribute<Contact, String> email;
 	public static volatile SingularAttribute<Contact, LocalDateTime> createDate;
 

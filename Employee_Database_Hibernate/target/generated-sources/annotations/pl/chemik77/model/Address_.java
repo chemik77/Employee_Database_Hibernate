@@ -16,6 +16,7 @@ public abstract class Address_ {
 	public static volatile SingularAttribute<Address, LocalDateTime> lastUpdate;
 	public static volatile SingularAttribute<Address, String> houseNo;
 	public static volatile SingularAttribute<Address, Integer> id;
+	public static volatile SingularAttribute<Address, Employee> employee;
 	public static volatile SingularAttribute<Address, LocalDateTime> createDate;
 
 }

@@ -23,14 +23,16 @@ public class Department {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
+
 	@Column(name = "create_date", columnDefinition = "datetime(0) DEFAULT NULL")
 	private LocalDateTime createDate;
 	@Column(name = "last_update", columnDefinition = "datetime(0) DEFAULT NULL")
 	private LocalDateTime lastUpdate;
 
-	@OneToOne(cascade = { CascadeType.MERGE, CascadeType.REMOVE }, orphanRemoval = true)
+	@OneToOne(mappedBy = "department_manager", cascade = { CascadeType.MERGE,
+			CascadeType.REMOVE }, orphanRemoval = true)
 	private Employee manager;
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "department", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Contact contact;
 
 	@OneToMany(mappedBy = "department", cascade = { CascadeType.MERGE,

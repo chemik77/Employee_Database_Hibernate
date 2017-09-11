@@ -43,14 +43,6 @@ public class Main {
 		Phone phone_man2 = new Phone();
 		Phone phone_emp = new Phone();
 
-		department.setName("Production");
-		department.setManager(manager);
-		department.setContact(contact_dep);
-		List<Employee> employees = new ArrayList<Employee>();
-		employees.add(manager);
-		employees.add(employee);
-		department.setEmployees(employees);
-
 		manager.setFirstName("Maria");
 		manager.setLastName("Wilczynska");
 		manager.setOffice("General Manager of Production");
@@ -60,6 +52,15 @@ public class Main {
 		manager.setContact(contact_man);
 		manager.setDepartment(department);
 		manager.setPersonalInfo(personalInfo_man);
+		manager.setDepartment_manager(department);
+
+		department.setName("Production");
+		department.setManager(manager);
+		department.setContact(contact_dep);
+		List<Employee> employees = new ArrayList<Employee>();
+		employees.add(manager);
+		employees.add(employee);
+		department.setEmployees(employees);
 
 		employee.setFirstName("Jerzy");
 		employee.setLastName("Kowalski");
@@ -76,37 +77,50 @@ public class Main {
 		address_man.setZipCode("05-520");
 		address_man.setCity("Bydgoszcz");
 		address_man.setCountry("Polska");
+		address_man.setEmployee(manager);
 
 		address_emp.setStreet("Diamentowa");
 		address_emp.setHouseNo("1/2");
 		address_emp.setZipCode("00-254");
 		address_emp.setCity("Warszawa");
 		address_emp.setCountry("Polska");
+		address_emp.setEmployee(employee);
 
 		contact_dep.setEmail("production_dept@company.com");
 		List<Phone> phones_dep = new ArrayList<Phone>();
 		phones_dep.add(phone_dep);
 		contact_dep.setPhones(phones_dep);
+		contact_dep.setDepartment(department);
 
 		contact_man.setEmail("mwilczynska@company.com");
 		List<Phone> phones_man = new ArrayList<Phone>();
 		phones_man.add(phone_man1);
 		phones_man.add(phone_man2);
 		contact_man.setPhones(phones_man);
+		contact_man.setEmployee(manager);
 
 		contact_emp.setEmail("jkowalski@company.com");
 		List<Phone> phones_emp = new ArrayList<Phone>();
 		phones_emp.add(phone_emp);
 		contact_emp.setPhones(phones_emp);
+		contact_emp.setEmployee(employee);
 
 		phone_dep.setType("Reception");
 		phone_dep.setNumber("71 524 89 01");
+		phone_dep.setContact(contact_dep);
+		;
 		phone_man1.setType("Work");
 		phone_man1.setNumber("71 524 89 74");
+		phone_man1.setContact(contact_man);
+		;
 		phone_man2.setType("Private");
 		phone_man2.setNumber("852 456 112");
+		phone_man2.setContact(contact_man);
+		;
 		phone_emp.setType("Private");
 		phone_emp.setNumber("508 525 455");
+		phone_emp.setContact(contact_emp);
+		;
 
 		personalInfo_man.setPesel("74091121005");
 		personalInfo_man.setGender(Gender.F);
@@ -147,14 +161,6 @@ public class Main {
 		Phone phone_man2 = new Phone();
 		Phone phone_emp = new Phone();
 
-		department.setName("Sales");
-		department.setManager(manager);
-		department.setContact(contact_dep);
-		List<Employee> employees = new ArrayList<Employee>();
-		employees.add(manager);
-		employees.add(employee);
-		department.setEmployees(employees);
-
 		manager.setFirstName("Julia");
 		manager.setLastName("Kaszuba");
 		manager.setOffice("General Manager of Sales");
@@ -163,7 +169,16 @@ public class Main {
 		manager.setAddress(address_man);
 		manager.setContact(contact_man);
 		manager.setDepartment(department);
+		manager.setDepartment_manager(department);
 		manager.setPersonalInfo(personalInfo_man);
+
+		department.setName("Sales");
+		department.setManager(manager);
+		department.setContact(contact_dep);
+		List<Employee> employees = new ArrayList<Employee>();
+		employees.add(manager);
+		employees.add(employee);
+		department.setEmployees(employees);
 
 		employee.setFirstName("Mariusz");
 		employee.setLastName("Zatorski");
@@ -180,37 +195,49 @@ public class Main {
 		address_man.setZipCode("05-520");
 		address_man.setCity("Warszawa");
 		address_man.setCountry("Polska");
+		address_man.setEmployee(manager);
 
 		address_emp.setStreet("Arbuzowa");
 		address_emp.setHouseNo("21/8");
 		address_emp.setZipCode("00-254");
 		address_emp.setCity("Warszawa");
 		address_emp.setCountry("Polska");
+		address_emp.setEmployee(employee);
 
 		contact_dep.setEmail("sales_dept@company.com");
 		List<Phone> phones_dep = new ArrayList<Phone>();
 		phones_dep.add(phone_dep);
 		contact_dep.setPhones(phones_dep);
+		contact_dep.setDepartment(department);
 
 		contact_man.setEmail("jkaszuba@company.com");
 		List<Phone> phones_man = new ArrayList<Phone>();
 		phones_man.add(phone_man1);
 		phones_man.add(phone_man2);
 		contact_man.setPhones(phones_man);
+		contact_man.setEmployee(manager);
 
 		contact_emp.setEmail("mzatorski@company.com");
 		List<Phone> phones_emp = new ArrayList<Phone>();
 		phones_emp.add(phone_emp);
 		contact_emp.setPhones(phones_emp);
+		contact_emp.setEmployee(employee);
 
 		phone_dep.setType("Reception");
 		phone_dep.setNumber("71 524 89 12");
+		phone_dep.setContact(contact_dep);
+		;
 		phone_man1.setType("Work");
 		phone_man1.setNumber("71 524 89 04");
+		phone_man1.setContact(contact_man);
+		;
 		phone_man2.setType("Private");
 		phone_man2.setNumber("858 456 112");
+		phone_man2.setContact(contact_man);
+		;
 		phone_emp.setType("Private");
 		phone_emp.setNumber("600 525 455");
+		phone_emp.setContact(contact_emp);
 
 		personalInfo_man.setPesel("74091121005");
 		personalInfo_man.setGender(Gender.F);

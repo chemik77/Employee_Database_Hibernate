@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Phone {
@@ -20,6 +21,9 @@ public class Phone {
 	private LocalDateTime createDate;
 	@Column(name = "last_update", columnDefinition = "datetime(0) DEFAULT NULL")
 	private LocalDateTime lastUpdate;
+
+	@ManyToOne
+	private Contact contact;
 
 	public Phone() {
 		this.createDate = LocalDateTime.now().withNano(0);
@@ -64,6 +68,14 @@ public class Phone {
 
 	public void setLastUpdate(LocalDateTime lastUpdate) {
 		this.lastUpdate = lastUpdate;
+	}
+
+	public Contact getContact() {
+		return contact;
+	}
+
+	public void setContact(Contact contact) {
+		this.contact = contact;
 	}
 
 	@Override
@@ -113,5 +125,4 @@ public class Phone {
 		return true;
 	}
 
-	
 }

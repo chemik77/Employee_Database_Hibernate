@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Address {
@@ -26,6 +27,9 @@ public class Address {
 	@Column(name = "last_update", columnDefinition = "datetime(0) DEFAULT NULL")
 	private LocalDateTime lastUpdate;
 
+	@OneToOne
+	private Employee employee;
+	
 	public Address() {
 		this.createDate = LocalDateTime.now().withNano(0);
 		this.lastUpdate = LocalDateTime.now().withNano(0);
@@ -94,6 +98,15 @@ public class Address {
 	public void setLastUpdate(LocalDateTime lastUpdate) {
 		this.lastUpdate = lastUpdate;
 	}
+	
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
 
 	@Override
 	public String toString() {
@@ -166,4 +179,5 @@ public class Address {
 		return true;
 	}
 
+	
 }
