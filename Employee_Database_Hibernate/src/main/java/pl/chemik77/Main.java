@@ -7,20 +7,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Path;
-import javax.persistence.criteria.Root;
 
-import pl.chemik77.database.dataManager.EmployeeDM;
-import pl.chemik77.model.Address;
-import pl.chemik77.model.Contact;
-import pl.chemik77.model.Department;
-import pl.chemik77.model.Employee;
-import pl.chemik77.model.Gender;
-import pl.chemik77.model.PersonalInfo;
-import pl.chemik77.model.Phone;
+import pl.chemik77.model.*;
 
 public class Main {
 
@@ -31,8 +19,6 @@ public class Main {
 
 		addExampleRows(entityManager);
 		addExampleRows2(entityManager);
-		// test(entityManager);
-		// test2(entityManager);
 
 		entityManager.close();
 		entityManagerFactory.close();
@@ -125,17 +111,19 @@ public class Main {
 		personalInfo_man.setPesel("74091121005");
 		personalInfo_man.setGender(Gender.F);
 		personalInfo_man.setBirthDate(LocalDate.parse("1974-09-11"));
-		personalInfo_man.setPhoto("photos/production/wilczynska_maria.png");
+		personalInfo_man.setPhoto("wilczynska_maria.jpg");
 		personalInfo_man.setEmployee(manager);
 
 		personalInfo_emp.setPesel("81011721005");
 		personalInfo_emp.setGender(Gender.M);
 		personalInfo_emp.setBirthDate(LocalDate.parse("1981-01-17"));
-		personalInfo_emp.setPhoto("photos/production/kowalski_jerzy.png");
+		personalInfo_emp.setPhoto("kowalski_jerzy.jpg");
 		personalInfo_emp.setEmployee(employee);
 
 		entityManager.getTransaction().begin();
 		entityManager.persist(department);
+		entityManager.persist(manager);
+		entityManager.persist(employee);
 		entityManager.getTransaction().commit();
 
 	}
@@ -227,44 +215,21 @@ public class Main {
 		personalInfo_man.setPesel("74091121005");
 		personalInfo_man.setGender(Gender.F);
 		personalInfo_man.setBirthDate(LocalDate.parse("1974-09-11"));
-		personalInfo_man.setPhoto("photos/sales/kaszuba_julia.png");
+		personalInfo_man.setPhoto("kaszuba_julia.jpg");
 		personalInfo_man.setEmployee(manager);
 
 		personalInfo_emp.setPesel("81011721005");
 		personalInfo_emp.setGender(Gender.M);
 		personalInfo_emp.setBirthDate(LocalDate.parse("1981-01-17"));
-		personalInfo_emp.setPhoto("photos/sales/zatorski_mariusz.png");
+		personalInfo_emp.setPhoto("zatorski_mariusz.jpg");
 		personalInfo_emp.setEmployee(employee);
 
 		entityManager.getTransaction().begin();
 		entityManager.persist(department);
+		entityManager.persist(manager);
+		entityManager.persist(employee);
 		entityManager.getTransaction().commit();
 
 	}
 
-	private static void test(EntityManager entityManager) {
-
-		String param = "k".concat("%");
-
-		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-		CriteriaQuery<Employee> q = cb.createQuery(Employee.class);
-
-		Root<Employee> e = q.from(Employee.class);
-		Path<String> path = e.get("lastName");
-
-		q.select(e).where(cb.like(path, param)).orderBy(cb.asc(path));
-
-		TypedQuery<Employee> typedQuery = entityManager.createQuery(q);
-		List<Employee> employees = typedQuery.getResultList();
-
-	}
-
-	private static void test2(EntityManager entityManager) {
-		EmployeeDM edm = new EmployeeDM();
-
-		List<Employee> employees = edm.getEmployeesWord("szub");
-		employees.forEach(em -> {
-			System.out.println(em);
-		});
-	}
 }

@@ -4,13 +4,13 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
 import pl.chemik77.database.dataManager.DepartmentDM;
 import pl.chemik77.model.Department;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class DepartmentController {
 
 	// --------FIELDS----------------

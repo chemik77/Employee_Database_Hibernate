@@ -82,7 +82,7 @@ public class AddEmployeeController {
 		Phone phone = new Phone();
 		phone.setType("work");
 		phone.setNumber(this.phone);
-		List<Phone> phones = new ArrayList<>();
+		List<Phone> phones = new ArrayList<Phone>();
 		phones.add(phone);
 		contact.setPhones(phones);
 		

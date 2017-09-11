@@ -23,6 +23,7 @@ public class AddDepartmentController {
 	private String email;
 	private String phone;
 
+	
 	// --------FIELDS CONFIG---------
 	private AddDepartmentDM addDepartmentDM;
 
@@ -37,18 +38,19 @@ public class AddDepartmentController {
 		Department department = new Department();
 		department.setName(name);
 
-		String[] word = manager.split(" ");
+		String managerName = manager;
+		String[] word = managerName.split(" ");
 		Employee employee = addDepartmentDM.getEmployeeByName(word[0], word[1]);
 		department.setManager(employee);
 		employee.setDepartment(department);
-		
-		List<Employee> employees = new ArrayList<>();
+
+		List<Employee> employees = new ArrayList<Employee>();
 		employees.add(employee);
 		department.setEmployees(employees);
 
 		Contact contact = new Contact();
 		contact.setEmail(email);
-		List<Phone> phones = new ArrayList<>();
+		List<Phone> phones = new ArrayList<Phone>();
 		Phone phone = new Phone();
 		phone.setType("Reception");
 		phone.setNumber(this.phone);
@@ -58,6 +60,12 @@ public class AddDepartmentController {
 		department.setContact(contact);
 
 		addDepartmentDM.addDepartment(department);
+
+		reset();
+	}
+
+	public void reset() {
+		setName("");
 	}
 
 	// --------GETTERS AND SETTERS----------------

@@ -32,26 +32,33 @@
 
 		<h:form>
 			<div id="content">
-				<h:panelGrid columns="2" cellpadding="2">
-					<p:outputLabel value="Name" for="name" />
-					<p:inputText value="#{addDepartmentController.name}" id="name" />
-					
-					<p:outputLabel value="Manager" for="manager" />
-					<p:inputText value="#{addDepartmentController.manager}"
-						id="manager" pt:placeholder="Nazwisko Imię" />
+				<p:panel id="panel">
 
-					<p:outputLabel value="Email" for="email" />
-					<p:inputText value="#{addDepartmentController.email}" id="email" />
-					
-					<p:outputLabel value="Phone" for="phone" />
-					<p:inputText value="#{addDepartmentController.phone}" id="phone" />
-					
-					<p:commandButton
-						actionListener="#{addDepartmentController.addDepartment()}"
-						value="Add department" />
-				</h:panelGrid>
+					<h:panelGrid columns="2" cellpadding="2">
+						<p:outputLabel value="Name" for="name" />
+						<p:inputText value="#{addDepartmentController.name}" id="name" />
+
+						<p:outputLabel value="Manager" for="manager" />
+						<p:inputText value="#{addDepartmentController.manager}"
+							id="manager" pt:placeholder="Nazwisko Imię" />
+
+						<p:outputLabel value="Email" for="email" />
+						<p:inputText value="#{addDepartmentController.email}" id="email" />
+
+						<p:outputLabel value="Phone" for="phone" />
+						<p:inputText value="#{addDepartmentController.phone}" id="phone" />
+
+						<p:commandButton
+							actionListener="#{addDepartmentController.addDepartment()}"
+							value="Add department" />
+
+					</h:panelGrid>
+				</p:panel>
+
+
+
+				<h:messages />
 			</div>
-			<h:messages />
 		</h:form>
 	</div>
 	<div id="footer">

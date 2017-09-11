@@ -28,12 +28,13 @@ public class Department {
 	@Column(name = "last_update", columnDefinition = "datetime(0) DEFAULT NULL")
 	private LocalDateTime lastUpdate;
 
-	@OneToOne(cascade = CascadeType.MERGE)
+	@OneToOne(cascade = { CascadeType.MERGE, CascadeType.REMOVE }, orphanRemoval = true)
 	private Employee manager;
 	@OneToOne(cascade = CascadeType.ALL)
 	private Contact contact;
 
-	@OneToMany(mappedBy = "department", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "department", cascade = { CascadeType.MERGE,
+			CascadeType.REMOVE }, orphanRemoval = true, fetch = FetchType.EAGER)
 	@Fetch(value = FetchMode.SUBSELECT)
 	private List<Employee> employees;
 

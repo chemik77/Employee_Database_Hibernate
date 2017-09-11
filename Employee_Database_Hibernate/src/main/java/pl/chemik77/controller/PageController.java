@@ -6,10 +6,10 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class PageController {
 
 	private List<String> letters;
@@ -20,7 +20,7 @@ public class PageController {
 	}
 
 	private void initLetters() {
-		letters = new ArrayList<>();
+		letters = new ArrayList<String>();
 		letters.clear();
 		String letter = "ABCDEFGHIJKLMNOPQRSTUWXYZ";
 		letters.addAll(Arrays.asList(letter.split("")));
