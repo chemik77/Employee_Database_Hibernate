@@ -6,6 +6,7 @@
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
         <wb-resource deploy-path="/" source-path="/src/main/webapp"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/target/generated-sources/annotations"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/resources-glassfish-embedded"/>
         <property name="context-root" value="Employee_Database_Hibernate"/>
         <property name="java-output-path" value="/Employee_Database_Hibernate/target/classes"/>
     </wb-module>

@@ -1,10 +1,8 @@
 package pl.chemik77.model;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -13,6 +11,7 @@ import javax.transaction.UserTransaction;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.arquillian.junit.InSequence;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
@@ -42,12 +41,9 @@ public class EmployeeTest {
 	@Inject
 	UserTransaction utx;
 
-	private static final String[] EMPLOYEE_LASTNAMES = { "Kowal", "Malachowska", "Bielak" };
-
 	@Before
 	public void preparePersistenceTest() throws Exception {
 		clearData();
-		insertData();
 		startTransaction();
 	}
 
@@ -63,20 +59,7 @@ public class EmployeeTest {
 		em.createQuery("DELETE FROM Department").executeUpdate();
 		utx.commit();
 	}
-
-	private void insertData() throws Exception {
-		utx.begin();
-		em.joinTransaction();
-		System.out.println("Inserting records...");
-		for (String lastName : EMPLOYEE_LASTNAMES) {
-			Employee employee = new Employee();
-			employee.setLastName(lastName);
-			em.persist(employee);
-		}
-		utx.commit();
-		em.clear();
-	}
-
+	
 	private void startTransaction() throws Exception {
 		utx.begin();
 		em.joinTransaction();
@@ -88,26 +71,40 @@ public class EmployeeTest {
 	}
 
 	@Test
-	public void shouldFindAllEmployees() throws Exception {
+	@InSequence(1)
+	public void shouldPersistsEmployees() throws Exception {
+		System.out.println("Persist new employees...");
+
 		// given
-		String fetchingAllEmployees = "SELECT e FROM Employee e ORDER BY e.id";
+		List<Employee> employees = new ArrayList<>();
+		Employee employee1 = new Employee();
+		employee1.setLastName("Zaremba");
+		employee1.setFirstName("Mateusz");
+		employee1.setOffice("Manager");
+		employee1.setSalary(5200);
+		employee1.setHireDate(LocalDate.parse("2017-05-04"));
+		employees.add(employee1);
+
+		Employee employee2 = new Employee();
+		employee2.setLastName("Wiśniewska");
+		employee2.setFirstName("Alicja");
+		employee2.setOffice("Leader");
+		employee2.setSalary(3900);
+		employee2.setHireDate(LocalDate.parse("2016-12-14"));
+		employees.add(employee2);
 
 		// when
-		System.out.println("Selecting...");
-		List<Employee> employees = em.createQuery(fetchingAllEmployees, Employee.class).getResultList();
+		em.persist(employee1);
+		em.persist(employee2);
+
+		em.flush();
+		em.clear();
+
+		List<Employee> retrievedEmployees = em.createQuery("SELECT e FROM Employee e ORDER BY e.id", Employee.class)
+				.getResultList();
 
 		// then
-		System.out.println("Found " + employees.size() + " employees: ");
-		assertContainsAllEmployees(employees);
-	}
-
-	private static void assertContainsAllEmployees(Collection<Employee> retrievedEmployees) {
-		Assert.assertEquals(EMPLOYEE_LASTNAMES.length, retrievedEmployees.size());
-		final Set<String> retrievedEmployeeLastNames = new HashSet<String>();
-		for (Employee employee : retrievedEmployees) {
-			System.out.println("*  " + employee.getLastName());
-			retrievedEmployeeLastNames.add(employee.getLastName());
-		}
-		Assert.assertTrue(retrievedEmployeeLastNames.containsAll(Arrays.asList(EMPLOYEE_LASTNAMES)));
+		Assert.assertEquals(employees.size(), retrievedEmployees.size());
+		Assert.assertTrue(employees.contains(retrievedEmployees.get(0)));
 	}
 }

@@ -29,14 +29,14 @@ public class Department {
 	@Column(name = "last_update", columnDefinition = "datetime(0) DEFAULT NULL")
 	private LocalDateTime lastUpdate;
 
-	@OneToOne(mappedBy = "department_manager", cascade = { CascadeType.MERGE,
-			CascadeType.REMOVE }, orphanRemoval = true)
+	@OneToOne(mappedBy = "department_manager", cascade = { CascadeType.MERGE, CascadeType.REMOVE,
+			CascadeType.PERSIST }, orphanRemoval = true)
 	private Employee manager;
 	@OneToOne(mappedBy = "department", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Contact contact;
 
-	@OneToMany(mappedBy = "department", cascade = { CascadeType.MERGE,
-			CascadeType.REMOVE }, orphanRemoval = true, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "department", cascade = { CascadeType.MERGE, CascadeType.REMOVE,
+			CascadeType.PERSIST }, orphanRemoval = true, fetch = FetchType.EAGER)
 	@Fetch(value = FetchMode.SUBSELECT)
 	private List<Employee> employees;
 
