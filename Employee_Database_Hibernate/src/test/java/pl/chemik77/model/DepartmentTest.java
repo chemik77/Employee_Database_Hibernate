@@ -96,6 +96,7 @@ public class DepartmentTest {
 
 		// then
 		Assert.assertEquals(departments.size(), retrievedDepartments.size());
+		Assert.assertTrue(retrievedDepartments.contains(departments.get(0)));
 	}
 
 	@Test
@@ -107,7 +108,9 @@ public class DepartmentTest {
 		List<Department> departments = new ArrayList<>();
 
 		Department department1 = new Department();
+		department1.setName("Quality");
 		Department department2 = new Department();
+		department2.setName("Production");
 		Employee manager1 = new Employee();
 		manager1.setLastName("Zaremba");
 		manager1.setDepartment(department1);
@@ -132,9 +135,8 @@ public class DepartmentTest {
 		// then
 		Assert.assertEquals(departments.size(), retrievedDepartments.size());
 		Assert.assertTrue(departments.contains(retrievedDepartments.get(0)));
-		Assert.assertTrue(retrievedManagers.contains(departments.get(0).getManager()));
-		Assert.assertNotNull(retrievedManagers.get(0));
 		Assert.assertEquals(2, retrievedManagers.size());
+		Assert.assertTrue(retrievedManagers.contains(departments.get(0).getManager()));
 	}
 
 	@Test
@@ -146,7 +148,9 @@ public class DepartmentTest {
 		List<Department> departments = new ArrayList<>();
 
 		Department department1 = new Department();
+		department1.setName("Quality");
 		Department department2 = new Department();
+		department2.setName("Production");
 		Contact contact1 = new Contact();
 		contact1.setEmail("quality@company.com");
 		contact1.setDepartment(department1);
@@ -171,9 +175,8 @@ public class DepartmentTest {
 		// then
 		Assert.assertEquals(departments.size(), retrievedDepartments.size());
 		Assert.assertTrue(departments.contains(retrievedDepartments.get(0)));
-		Assert.assertTrue(retrievedContacts.contains(departments.get(0).getContact()));
-		Assert.assertNotNull(retrievedContacts.get(0));
 		Assert.assertEquals(2, retrievedContacts.size());
+		Assert.assertTrue(retrievedContacts.contains(departments.get(0).getContact()));
 	}
 
 	@Test
@@ -212,12 +215,12 @@ public class DepartmentTest {
 		List<Department> retrievedDepartments = em.createQuery(SQL_DEPART, Department.class).getResultList();
 
 		// then
+		Assert.assertEquals(departments.size(), retrievedDepartments.size());
+		Assert.assertTrue(retrievedDepartments.contains(departments.get(0)));
 		Assert.assertEquals(departments.get(0).getEmployees().size(),
 				retrievedDepartments.get(0).getEmployees().size());
-		Assert.assertEquals(departments.get(0).getName(), retrievedDepartments.get(0).getName());
 		Assert.assertTrue(
 				departments.get(0).getEmployees().contains((retrievedDepartments.get(0).getEmployees().get(0))));
-
 	}
 
 }

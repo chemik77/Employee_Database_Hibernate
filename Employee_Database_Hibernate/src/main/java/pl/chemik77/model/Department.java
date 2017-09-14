@@ -32,7 +32,8 @@ public class Department {
 	@OneToOne(mappedBy = "department_manager", cascade = { CascadeType.MERGE, CascadeType.REMOVE,
 			CascadeType.PERSIST }, orphanRemoval = true)
 	private Employee manager;
-	@OneToOne(mappedBy = "department", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToOne(mappedBy = "department", cascade = { CascadeType.MERGE, CascadeType.REMOVE,
+			CascadeType.PERSIST }, orphanRemoval = true)
 	private Contact contact;
 
 	@OneToMany(mappedBy = "department", cascade = { CascadeType.MERGE, CascadeType.REMOVE,
@@ -110,6 +111,7 @@ public class Department {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((contact == null) ? 0 : contact.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
@@ -127,6 +129,13 @@ public class Department {
 			return false;
 		}
 		Department other = (Department) obj;
+		if (contact == null) {
+			if (other.contact != null) {
+				return false;
+			}
+		} else if (!contact.equals(other.contact)) {
+			return false;
+		}
 		if (id != other.id) {
 			return false;
 		}

@@ -162,7 +162,6 @@ public class Employee {
 		int result = 1;
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
 		result = prime * result + ((contact == null) ? 0 : contact.hashCode());
-		result = prime * result + ((department == null) ? 0 : department.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + ((hireDate == null) ? 0 : hireDate.hashCode());
 		result = prime * result + id;
@@ -197,13 +196,6 @@ public class Employee {
 				return false;
 			}
 		} else if (!contact.equals(other.contact)) {
-			return false;
-		}
-		if (department == null) {
-			if (other.department != null) {
-				return false;
-			}
-		} else if (!department.equals(other.department)) {
 			return false;
 		}
 		if (firstName == null) {
@@ -249,5 +241,7 @@ public class Employee {
 		}
 		return true;
 	}
+
+	
 
 }

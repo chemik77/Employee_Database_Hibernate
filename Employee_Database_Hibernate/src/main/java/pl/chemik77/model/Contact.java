@@ -20,6 +20,7 @@ public class Contact {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String email;
+	
 	@Column(name = "create_date", columnDefinition = "datetime(0) DEFAULT NULL")
 	private LocalDateTime createDate;
 	@Column(name = "last_update", columnDefinition = "datetime(0) DEFAULT NULL")
@@ -105,7 +106,6 @@ public class Contact {
 		int result = 1;
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + id;
-		result = prime * result + ((phones == null) ? 0 : phones.hashCode());
 		return result;
 	}
 
@@ -129,13 +129,6 @@ public class Contact {
 			return false;
 		}
 		if (id != other.id) {
-			return false;
-		}
-		if (phones == null) {
-			if (other.phones != null) {
-				return false;
-			}
-		} else if (!phones.equals(other.phones)) {
 			return false;
 		}
 		return true;

@@ -109,7 +109,6 @@ public class PersonalInfo {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((birthDate == null) ? 0 : birthDate.hashCode());
-		result = prime * result + ((employee == null) ? 0 : employee.hashCode());
 		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((pesel == null) ? 0 : pesel.hashCode());
@@ -134,13 +133,6 @@ public class PersonalInfo {
 				return false;
 			}
 		} else if (!birthDate.equals(other.birthDate)) {
-			return false;
-		}
-		if (employee == null) {
-			if (other.employee != null) {
-				return false;
-			}
-		} else if (!employee.equals(other.employee)) {
 			return false;
 		}
 		if (gender != other.gender) {
