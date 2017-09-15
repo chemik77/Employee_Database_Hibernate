@@ -34,12 +34,15 @@ public class AddDepartmentController {
 
 	// --------METHODS----------------
 	public void addDepartment() {
+		/*
+		 * 
+		 */
+		System.out.println("Add dept");
+		
 		Department department = new Department();
 		department.setName(name);
 
-		String managerName = manager;
-		String[] word = managerName.split(" ");
-		Employee employee = addDepartmentDM.getEmployeeByName(word[0], word[1]);
+		Employee employee = addDepartmentDM.getEmployeeByName("Kowalski", "Jerzy");
 		department.setManager(employee);
 		employee.setDepartment(department);
 
