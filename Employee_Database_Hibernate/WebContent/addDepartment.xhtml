@@ -38,29 +38,26 @@
 						<p:outputLabel value="Name" for="name" />
 						<p:inputText value="#{addDepartmentController.name}" id="name" />
 
-						<p:outputLabel value="Manager" for="manager" />
-						<p:inputText value="#{addDepartmentController.manager}"
-							id="manager" pt:placeholder="Nazwisko Imię" />
+						<p:outputLabel value="Manager (pesel)" for="manager" />
+						<p:inputText value="#{addDepartmentController.managerPesel}"
+							id="manager" pt:placeholder="Pesel" />
 
 						<p:outputLabel value="Email" for="email" />
 						<p:inputText value="#{addDepartmentController.email}" id="email" />
 
 						<p:outputLabel value="Phone" for="phone" />
 						<p:inputText value="#{addDepartmentController.phone}" id="phone" />
-
-				<p:toolbar>
-					<f:facet name="left">
-						<p:commandButton value="Add department" id="addButton"
-							update="panel"
-							action="#{addDepartmentController.addDepartment()}" process="@this" />
-							<p:messages />
-					</f:facet>
-				</p:toolbar>
-
 					</h:panelGrid>
 
 				</p:panel>
-
+				<p:toolbar>
+					<f:facet name="left">
+						<p:commandButton value="Add department" id="addButton"
+							update="form"
+							action="#{addDepartmentController.addDepartment()}" />
+						<p:messages />
+					</f:facet>
+				</p:toolbar>
 			</div>
 		</h:form>
 	</div>

@@ -1,5 +1,8 @@
 package pl.chemik77.database.dataManager;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -10,6 +13,7 @@ import javax.persistence.criteria.Path;
 import pl.chemik77.database.utils.EMF;
 import pl.chemik77.model.Department;
 import pl.chemik77.model.Employee;
+import pl.chemik77.model.PersonalInfo;
 
 public class AddDepartmentDM {
 
@@ -28,11 +32,18 @@ public class AddDepartmentDM {
 	// employee=department.manager
 	public void addDepartment(Department department) {
 		connect();
-
 		entityManager.getTransaction().begin();
+
+		Employee man = entityManager.find(Employee.class, department.getManager().getId());
+		man.setDepartment(department);
+		man.setDepartment_manager(department);
+		department.setManager(man);
+
+		List<Employee> employees = new ArrayList<Employee>();
+		employees.add(man);
+		department.setEmployees(employees);
+
 		entityManager.persist(department);
-		Employee oldEmployee = entityManager.find(Employee.class, department.getManager().getId());
-		oldEmployee.setDepartment(department);
 		entityManager.getTransaction().commit();
 
 		disconnect();
@@ -56,6 +67,33 @@ public class AddDepartmentDM {
 		Employee employee = typedQuery.getSingleResult();
 
 		disconnect();
+		return employee;
+	}
+
+	// SELECT p FROM PersonalInfo p WHERE pesel='?'
+	public PersonalInfo getPersonalInfoByPesel(String pesel) {
+		connect();
+
+		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+		CriteriaQuery<PersonalInfo> q = cb.createQuery(PersonalInfo.class);
+
+		Root<PersonalInfo> p = q.from(PersonalInfo.class);
+		Path<String> peselPath = p.get("pesel");
+
+		q.select(p).where(cb.equal(peselPath, pesel));
+
+		TypedQuery<PersonalInfo> typedQuery = entityManager.createQuery(q);
+		PersonalInfo personalInfo = typedQuery.getSingleResult();
+
+		disconnect();
+		return personalInfo;
+	}
+
+	public Employee getEmployeeByPesel(String pesel) {
+
+		PersonalInfo personalInfo = getPersonalInfoByPesel(pesel);
+		Employee employee = personalInfo.getEmployee();
+
 		return employee;
 	}
 

@@ -100,7 +100,6 @@ public class EmployeeTest {
 		// when
 		em.persist(employee1);
 		em.persist(employee2);
-
 		em.flush();
 		em.clear();
 

@@ -19,7 +19,7 @@ public class AddDepartmentController {
 
 	// --------FIELDS----------------
 	private String name;
-	private String manager;
+	private String managerPesel;
 	private String email;
 	private String phone;
 
@@ -34,28 +34,21 @@ public class AddDepartmentController {
 
 	// --------METHODS----------------
 	public void addDepartment() {
-		/*
-		 * 
-		 */
-		System.out.println("Add dept");
 		
 		Department department = new Department();
 		department.setName(name);
 
-		Employee employee = addDepartmentDM.getEmployeeByName("Kowalski", "Jerzy");
+		Employee employee = addDepartmentDM.getEmployeeByPesel(managerPesel);
 		department.setManager(employee);
-		employee.setDepartment(department);
-
-		List<Employee> employees = new ArrayList<Employee>();
-		employees.add(employee);
-		department.setEmployees(employees);
 
 		Contact contact = new Contact();
 		contact.setEmail(email);
+		contact.setDepartment(department);
 		List<Phone> phones = new ArrayList<Phone>();
 		Phone phone = new Phone();
 		phone.setType("Reception");
 		phone.setNumber(this.phone);
+		phone.setContact(contact);
 		phones.add(phone);
 		contact.setPhones(phones);
 
@@ -63,11 +56,6 @@ public class AddDepartmentController {
 
 		addDepartmentDM.addDepartment(department);
 
-		reset();
-	}
-
-	public void reset() {
-		setName("");
 	}
 
 	// --------GETTERS AND SETTERS----------------
@@ -79,12 +67,12 @@ public class AddDepartmentController {
 		this.name = name;
 	}
 
-	public String getManager() {
-		return manager;
+	public String getManagerPesel() {
+		return managerPesel;
 	}
 
-	public void setManager(String manager) {
-		this.manager = manager;
+	public void setManagerPesel(String managerPesel) {
+		this.managerPesel = managerPesel;
 	}
 
 	public String getEmail() {

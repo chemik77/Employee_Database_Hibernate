@@ -8,7 +8,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
-import pl.chemik77.database.utils.EMF;
+import pl.chemik77.database.utils.*;
 import pl.chemik77.model.Department;
 import pl.chemik77.model.Employee;
 

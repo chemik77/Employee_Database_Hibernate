@@ -16,7 +16,7 @@ import pl.chemik77.model.*;
 public class AddEmployeeController {
 
 	// --------FIELDS----------------
-	
+
 	private String firstName;
 	private String lastName;
 	private String office;
@@ -38,15 +38,15 @@ public class AddEmployeeController {
 	private String photo;
 
 	private Department department;
-	
+
 	private List<Department> departments;
-	
+
 	// --------FIELDS CONFIG---------
-	
+
 	private AddEmployeeDM addEmployeeDM;
-	
+
 	// --------INITIALIZE----------------
-	
+
 	@PostConstruct
 	private void init() {
 		addEmployeeDM = new AddEmployeeDM();
@@ -54,9 +54,9 @@ public class AddEmployeeController {
 	}
 
 	// --------METHODS----------------
-	
+
 	public void addEmployee() {
-		
+
 		Employee employee = new Employee();
 		employee.setFirstName(firstName);
 		employee.setLastName(lastName);
@@ -64,44 +64,45 @@ public class AddEmployeeController {
 		employee.setSalary(salary);
 		employee.setHireDate(hireDate);
 		employee.setDepartment(department);
-		
+
 		List<Employee> employees = department.getEmployees();
 		employees.add(employee);
-		
+
 		Address address = new Address();
 		address.setStreet(street);
 		address.setHouseNo(houseNo);
 		address.setZipCode(zipCode);
 		address.setCity(city);
 		address.setCountry(country);
-		
+		address.setEmployee(employee);
 		employee.setAddress(address);
-		
+
 		Contact contact = new Contact();
 		contact.setEmail(email);
 		Phone phone = new Phone();
 		phone.setType("work");
 		phone.setNumber(this.phone);
+		phone.setContact(contact);
 		List<Phone> phones = new ArrayList<Phone>();
 		phones.add(phone);
 		contact.setPhones(phones);
-		
+		contact.setEmployee(employee);
 		employee.setContact(contact);
-		
+
 		PersonalInfo personalInfo = new PersonalInfo();
 		personalInfo.setPesel(pesel);
 		personalInfo.setGender(gender);
 		personalInfo.setBirthDate(birthDate);
-		photo += ".png";
+		photo += ".jpg";
 		personalInfo.setPhoto(photo);
-		
+
 		employee.setPersonalInfo(personalInfo);
 		personalInfo.setEmployee(employee);
-		
+
 		addEmployeeDM.addEmployee(employee);
-		
+
 	}
-	
+
 	// --------GETTERS AND SETTERS----------------
 
 	public String getFirstName() {
