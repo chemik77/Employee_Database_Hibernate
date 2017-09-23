@@ -53,8 +53,9 @@
 				<p:toolbar>
 					<f:facet name="left">
 						<p:commandButton value="Add department" id="addButton"
-							update="form"
-							action="#{addDepartmentController.addDepartment()}" />
+							update="panel"
+							actionListener="#{addDepartmentController.addDepartment()}">
+						</p:commandButton>
 						<p:messages />
 					</f:facet>
 				</p:toolbar>

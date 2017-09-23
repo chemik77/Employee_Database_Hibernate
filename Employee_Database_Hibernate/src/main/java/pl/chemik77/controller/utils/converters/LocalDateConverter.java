@@ -1,4 +1,4 @@
-package pl.chemik77.controller.utils;
+package pl.chemik77.controller.utils.converters;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

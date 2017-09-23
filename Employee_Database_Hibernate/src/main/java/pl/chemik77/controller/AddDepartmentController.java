@@ -1,12 +1,14 @@
 package pl.chemik77.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
 
+import pl.chemik77.controller.utils.ContextUtil;
 import pl.chemik77.database.dataManager.AddDepartmentDM;
 import pl.chemik77.model.Contact;
 import pl.chemik77.model.Department;
@@ -14,7 +16,7 @@ import pl.chemik77.model.Employee;
 import pl.chemik77.model.Phone;
 
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class AddDepartmentController {
 
 	// --------FIELDS----------------
@@ -33,8 +35,8 @@ public class AddDepartmentController {
 	}
 
 	// --------METHODS----------------
-	public void addDepartment() {
-		
+	public void addDepartment() throws IOException {
+
 		Department department = new Department();
 		department.setName(name);
 
@@ -56,6 +58,12 @@ public class AddDepartmentController {
 
 		addDepartmentDM.addDepartment(department);
 
+		clearFields();
+
+	}
+
+	private void clearFields() throws IOException {
+		ContextUtil.redirectNewForm();
 	}
 
 	// --------GETTERS AND SETTERS----------------

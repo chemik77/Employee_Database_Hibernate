@@ -1,4 +1,4 @@
-package pl.chemik77.controller.utils;
+package pl.chemik77.controller.utils.converters;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;

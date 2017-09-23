@@ -1,18 +1,20 @@
 package pl.chemik77.controller;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
 
+import pl.chemik77.controller.utils.ContextUtil;
 import pl.chemik77.database.dataManager.AddEmployeeDM;
 import pl.chemik77.model.*;
 
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class AddEmployeeController {
 
 	// --------FIELDS----------------
@@ -55,7 +57,7 @@ public class AddEmployeeController {
 
 	// --------METHODS----------------
 
-	public void addEmployee() {
+	public void addEmployee() throws IOException {
 
 		Employee employee = new Employee();
 		employee.setFirstName(firstName);
@@ -101,6 +103,12 @@ public class AddEmployeeController {
 
 		addEmployeeDM.addEmployee(employee);
 
+		clearFields();
+
+	}
+
+	private void clearFields() throws IOException {
+		ContextUtil.redirectNewForm();
 	}
 
 	// --------GETTERS AND SETTERS----------------
