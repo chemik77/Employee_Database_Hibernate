@@ -4,13 +4,13 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
 
 import pl.chemik77.database.dataManager.DepartmentDM;
 import pl.chemik77.model.Department;
 
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class DepartmentController {
 
 	// --------FIELDS----------------
@@ -31,6 +31,11 @@ public class DepartmentController {
 	
 	// --------METHODS----------------
 
+	public void deleteDepartment(Department department) {
+		departmentDataManager.deleteDepartment(department);
+		init();
+	}
+	
 	// --------GETTERS AND SETTERS----------------
 
 	public List<Department> getDepartments() {

@@ -39,7 +39,6 @@ public class DepartmentTest {
 
 	private final String SQL_DEPART = "SELECT d FROM Department d ORDER BY d.id";
 	private final String SQL_EMPLOYEE = "SELECT e FROM Employee e ORDER BY e.id";
-	private final String SQL_CONTACT = "SELECT c FROM Contact c ORDER BY c.id";
 
 	@Before
 	public void preparePersistenceTest() throws Exception {
@@ -141,46 +140,6 @@ public class DepartmentTest {
 
 	@Test
 	@InSequence(3)
-	public void shouldPersistDepartmentWithContact() {
-		System.out.println("Persist new department with contact...");
-
-		// given
-		List<Department> departments = new ArrayList<>();
-
-		Department department1 = new Department();
-		department1.setName("Quality");
-		Department department2 = new Department();
-		department2.setName("Production");
-		Contact contact1 = new Contact();
-		contact1.setEmail("quality@company.com");
-		contact1.setDepartment(department1);
-		Contact contact2 = new Contact();
-		contact2.setEmail("production@company.com");
-		contact2.setDepartment(department2);
-
-		department1.setContact(contact1);
-		departments.add(department1);
-		department2.setContact(contact2);
-		departments.add(department2);
-
-		// when
-		em.persist(department1);
-		em.persist(department2);
-		em.flush();
-		em.clear();
-
-		List<Department> retrievedDepartments = em.createQuery(SQL_DEPART, Department.class).getResultList();
-		List<Contact> retrievedContacts = em.createQuery(SQL_CONTACT, Contact.class).getResultList();
-
-		// then
-		Assert.assertEquals(departments.size(), retrievedDepartments.size());
-		Assert.assertTrue(departments.contains(retrievedDepartments.get(0)));
-		Assert.assertEquals(2, retrievedContacts.size());
-		Assert.assertTrue(retrievedContacts.contains(departments.get(0).getContact()));
-	}
-
-	@Test
-	@InSequence(4)
 	public void shouldPersistsDepartmentWithEmployees() throws Exception {
 		System.out.println("Persist new department with employees...");
 

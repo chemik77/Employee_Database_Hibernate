@@ -2,7 +2,6 @@ package pl.chemik77.controller;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -18,6 +17,8 @@ import pl.chemik77.model.*;
 public class AddEmployeeController {
 
 	// --------FIELDS----------------
+
+	private Employee selectedEmployee;
 
 	private String firstName;
 	private String lastName;
@@ -81,13 +82,7 @@ public class AddEmployeeController {
 
 		Contact contact = new Contact();
 		contact.setEmail(email);
-		Phone phone = new Phone();
-		phone.setType("work");
-		phone.setNumber(this.phone);
-		phone.setContact(contact);
-		List<Phone> phones = new ArrayList<Phone>();
-		phones.add(phone);
-		contact.setPhones(phones);
+		contact.setPhone("852 147 555");
 		contact.setEmployee(employee);
 		employee.setContact(contact);
 
@@ -104,6 +99,15 @@ public class AddEmployeeController {
 		addEmployeeDM.addEmployee(employee);
 
 		clearFields();
+
+	}
+	
+	public void setEmployee() {
+		firstName = "udalo sie";
+		lastName = selectedEmployee.getLastName();
+	}
+
+	public void saveEmployee() {
 
 	}
 
@@ -257,4 +261,11 @@ public class AddEmployeeController {
 		this.departments = departments;
 	}
 
+	public Employee getSelectedEmployee() {
+		return selectedEmployee;
+	}
+
+	public void setSelectedEmployee(Employee selectedEmployee) {
+		this.selectedEmployee = selectedEmployee;
+	}
 }

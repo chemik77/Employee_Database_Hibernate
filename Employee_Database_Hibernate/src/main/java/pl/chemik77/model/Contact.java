@@ -1,16 +1,12 @@
 package pl.chemik77.model;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -20,19 +16,15 @@ public class Contact {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String email;
-	
+	private String phone;
+
 	@Column(name = "create_date", columnDefinition = "datetime(0) DEFAULT NULL")
 	private LocalDateTime createDate;
 	@Column(name = "last_update", columnDefinition = "datetime(0) DEFAULT NULL")
 	private LocalDateTime lastUpdate;
 
 	@OneToOne
-	private Department department;
-	@OneToOne
 	private Employee employee;
-
-	@OneToMany(mappedBy = "contact", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-	private List<Phone> phones;
 
 	public Contact() {
 		this.createDate = LocalDateTime.now().withNano(0);
@@ -71,22 +63,6 @@ public class Contact {
 		this.lastUpdate = lastUpdate;
 	}
 
-	public List<Phone> getPhones() {
-		return phones;
-	}
-
-	public void setPhones(List<Phone> phones) {
-		this.phones = phones;
-	}
-
-	public Department getDepartment() {
-		return department;
-	}
-
-	public void setDepartment(Department department) {
-		this.department = department;
-	}
-
 	public Employee getEmployee() {
 		return employee;
 	}
@@ -95,9 +71,17 @@ public class Contact {
 		this.employee = employee;
 	}
 
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
 	@Override
 	public String toString() {
-		return "Contact [id=" + id + ", email=" + email + "]";
+		return "Contact [email=" + email + ", phone=" + phone + "]";
 	}
 
 	@Override
@@ -106,6 +90,7 @@ public class Contact {
 		int result = 1;
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + id;
+		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
 		return result;
 	}
 
@@ -129,6 +114,13 @@ public class Contact {
 			return false;
 		}
 		if (id != other.id) {
+			return false;
+		}
+		if (phone == null) {
+			if (other.phone != null) {
+				return false;
+			}
+		} else if (!phone.equals(other.phone)) {
 			return false;
 		}
 		return true;

@@ -23,21 +23,17 @@ public class Department {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
+	private String phone;
 
 	@Column(name = "create_date", columnDefinition = "datetime(0) DEFAULT NULL")
 	private LocalDateTime createDate;
 	@Column(name = "last_update", columnDefinition = "datetime(0) DEFAULT NULL")
 	private LocalDateTime lastUpdate;
 
-	@OneToOne(mappedBy = "department_manager", cascade = { CascadeType.MERGE, CascadeType.REMOVE,
-			CascadeType.PERSIST }, orphanRemoval = true)
+	@OneToOne(mappedBy = "department_manager", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Employee manager;
-	@OneToOne(mappedBy = "department", cascade = { CascadeType.MERGE, CascadeType.REMOVE,
-			CascadeType.PERSIST }, orphanRemoval = true)
-	private Contact contact;
 
-	@OneToMany(mappedBy = "department", cascade = { CascadeType.MERGE, CascadeType.REMOVE,
-			CascadeType.PERSIST }, orphanRemoval = true, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "department", cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
 	@Fetch(value = FetchMode.SUBSELECT)
 	private List<Employee> employees;
 
@@ -86,20 +82,20 @@ public class Department {
 		this.manager = manager;
 	}
 
-	public Contact getContact() {
-		return contact;
-	}
-
-	public void setContact(Contact contact) {
-		this.contact = contact;
-	}
-
 	public List<Employee> getEmployees() {
 		return employees;
 	}
 
 	public void setEmployees(List<Employee> employees) {
 		this.employees = employees;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	@Override
@@ -111,9 +107,9 @@ public class Department {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((contact == null) ? 0 : contact.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
 		return result;
 	}
 
@@ -129,13 +125,6 @@ public class Department {
 			return false;
 		}
 		Department other = (Department) obj;
-		if (contact == null) {
-			if (other.contact != null) {
-				return false;
-			}
-		} else if (!contact.equals(other.contact)) {
-			return false;
-		}
 		if (id != other.id) {
 			return false;
 		}
@@ -144,6 +133,13 @@ public class Department {
 				return false;
 			}
 		} else if (!name.equals(other.name)) {
+			return false;
+		}
+		if (phone == null) {
+			if (other.phone != null) {
+				return false;
+			}
+		} else if (!phone.equals(other.phone)) {
 			return false;
 		}
 		return true;

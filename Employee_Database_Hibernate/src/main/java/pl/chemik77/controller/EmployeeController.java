@@ -4,13 +4,13 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
 
 import pl.chemik77.database.dataManager.EmployeeDM;
 import pl.chemik77.model.Employee;
 
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class EmployeeController {
 
 	// --------FIELDS----------------
@@ -58,6 +58,11 @@ public class EmployeeController {
 		} else {
 			employees = employeeDataManager.getEmployeesWord(word);
 		}
+	}
+
+	public void deleteEmployee(Employee employee) {
+		employeeDataManager.deleteEmployee(employee);
+		init();
 	}
 
 	// --------GETTERS AND SETTERS----------------

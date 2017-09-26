@@ -51,7 +51,8 @@ public class AddDepartmentDM {
 
 	// SELECT e FROM Employee e WHERE lastName='word1'
 	// AND firstName='word2'
-	public Employee getEmployeeByName(String word1, String word2) {
+	public Employee getEmployeeByName(String name) {
+		String[] word = name.split(", ");
 		connect();
 
 		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
@@ -61,7 +62,7 @@ public class AddDepartmentDM {
 		Path<String> lastName = e.get("lastName");
 		Path<String> firstName = e.get("firstName");
 
-		q.select(e).where(cb.and(cb.equal(lastName, word1), cb.equal(firstName, word2)));
+		q.select(e).where(cb.and(cb.equal(lastName, word[0]), cb.equal(firstName, word[1])));
 
 		TypedQuery<Employee> typedQuery = entityManager.createQuery(q);
 		Employee employee = typedQuery.getSingleResult();

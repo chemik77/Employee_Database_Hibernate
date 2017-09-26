@@ -30,11 +30,11 @@
 		</h:form>
 
 
-		<h:form>
+		<h:form id="form">
 			<div id="content">
 				<p:dataTable id="departmentsTable" var="d"
 					value="#{departmentController.departments}"
-					columnClasses="nameColumn,contactColumn" >
+					columnClasses="nameColumn,contactColumn,editColumn" >
 					<p:column>
 						<h:outputText value="#{d.name}" />
 						<br />
@@ -43,9 +43,14 @@
 						<br />
 					</p:column>
 					<p:column>
-						<h:outputText value="#{d.contact.email}" />
+						<h:outputText value="#{d.phone}" />
 						<br />
-						<h:outputText value="#{d.contact.phones.get(0)}" />
+					</p:column>
+					<p:column>
+					<p:button value="Edit" outcome="editEmployee">
+						<f:param name="department" value="#{d}"/>
+						</p:button>
+						<p:commandButton value="Delete" update="form" actionListener="#{departmentController.deleteDepartment(d)}" />
 						<br />
 					</p:column>
 				</p:dataTable>

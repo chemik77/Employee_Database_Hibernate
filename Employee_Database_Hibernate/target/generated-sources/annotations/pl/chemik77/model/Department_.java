@@ -11,8 +11,8 @@ import javax.persistence.metamodel.StaticMetamodel;
 public abstract class Department_ {
 
 	public static volatile SingularAttribute<Department, Employee> manager;
+	public static volatile SingularAttribute<Department, String> phone;
 	public static volatile SingularAttribute<Department, LocalDateTime> lastUpdate;
-	public static volatile SingularAttribute<Department, Contact> contact;
 	public static volatile SingularAttribute<Department, String> name;
 	public static volatile SingularAttribute<Department, Integer> id;
 	public static volatile ListAttribute<Department, Employee> employees;

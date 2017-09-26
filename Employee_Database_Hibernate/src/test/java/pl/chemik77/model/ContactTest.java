@@ -10,7 +10,6 @@ import javax.transaction.UserTransaction;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.arquillian.junit.InSequence;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
@@ -69,7 +68,6 @@ public class ContactTest {
 	}
 
 	@Test
-	@InSequence(1)
 	public void shouldPersistContact() throws Exception {
 		System.out.println("Persist new contact...");
 
@@ -77,10 +75,12 @@ public class ContactTest {
 		List<Contact> contacts = new ArrayList<>();
 		Contact contact1 = new Contact();
 		contact1.setEmail("quality@company.com");
+		contact1.setPhone("854 412 225");
 		contacts.add(contact1);
 
 		Contact contact2 = new Contact();
 		contact2.setEmail("mzaremba@company.com");
+		contact2.setPhone("652 211 442");
 		contacts.add(contact2);
 
 		// when
@@ -98,43 +98,4 @@ public class ContactTest {
 
 	}
 
-	@Test
-	@InSequence(2)
-	public void shouldPersistContactWithPhones() {
-		System.out.println("Persist new contact with phones...");
-
-		// given
-		List<Contact> contacts = new ArrayList<>();
-		List<Phone> phones = new ArrayList<>();
-
-		Contact contact = new Contact();
-		contact.setEmail("quality@company.com");
-		contact.setPhones(phones);
-		contacts.add(contact);
-
-		Phone phone1 = new Phone();
-		phone1.setType("Work");
-		phone1.setNumber("600 258 888");
-		phone1.setContact(contact);
-		phones.add(phone1);
-
-		Phone phone2 = new Phone();
-		phone2.setType("Private");
-		phone2.setNumber("598 555 778");
-		phone2.setContact(contact);
-		phones.add(phone2);
-
-		// when
-		em.persist(contact);
-		em.flush();
-		em.clear();
-
-		List<Contact> retrievedContacts = em.createQuery(SQL_CONTACT, Contact.class).getResultList();
-
-		// then
-		Assert.assertEquals(contacts.size(), retrievedContacts.size());
-		Assert.assertTrue(retrievedContacts.contains(contacts.get(0)));
-		Assert.assertEquals(contacts.get(0).getPhones().size(), retrievedContacts.get(0).getPhones().size());
-		Assert.assertTrue(contacts.get(0).getPhones().contains((retrievedContacts.get(0).getPhones().get(0))));
-	}
 }
