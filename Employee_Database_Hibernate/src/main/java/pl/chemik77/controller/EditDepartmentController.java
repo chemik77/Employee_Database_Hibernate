@@ -7,7 +7,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import pl.chemik77.controller.utils.ContextUtil;
-import pl.chemik77.database.dataManager.AddDepartmentDM;
+import pl.chemik77.database.dataManager.DepartmentDM;
+import pl.chemik77.database.dataManager.EmployeeDM;
 import pl.chemik77.model.Department;
 import pl.chemik77.model.Employee;
 
@@ -24,12 +25,14 @@ public class EditDepartmentController {
 	private Department selectedDepartment;
 
 	// --------FIELDS CONFIG---------
-	private AddDepartmentDM addDepartmentDM;
+	private DepartmentDM departmentDM;
+	private EmployeeDM employeeDM;
 
 	// --------INITIALIZE----------------
 	@PostConstruct
 	private void init() {
-		addDepartmentDM = new AddDepartmentDM();
+		departmentDM = new DepartmentDM();
+		employeeDM = new EmployeeDM();
 	}
 
 	// --------METHODS----------------
@@ -50,11 +53,11 @@ public class EditDepartmentController {
 	public void saveDepartment() throws IOException {
 		selectedDepartment.setId(id);
 		selectedDepartment.setName(name);
-		Employee employeeByPesel = addDepartmentDM.getEmployeeByPesel(managerPesel);
+		Employee employeeByPesel = employeeDM.getEmployeeByPesel(managerPesel);
 		selectedDepartment.setManager(employeeByPesel);
 		selectedDepartment.setPhone(phone);
 
-		addDepartmentDM.updateDepartment(selectedDepartment);
+		departmentDM.updateDepartment(selectedDepartment);
 
 		ContextUtil.redirectTo("departments.jsf");
 	}

@@ -7,7 +7,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import pl.chemik77.controller.utils.ContextUtil;
-import pl.chemik77.database.dataManager.AddDepartmentDM;
+import pl.chemik77.database.dataManager.DepartmentDM;
+import pl.chemik77.database.dataManager.EmployeeDM;
 import pl.chemik77.model.Department;
 import pl.chemik77.model.Employee;
 
@@ -21,12 +22,14 @@ public class AddDepartmentController {
 	private String phone;
 
 	// --------FIELDS CONFIG---------
-	private AddDepartmentDM addDepartmentDM;
+	private DepartmentDM departmentDM;
+	private EmployeeDM employeeDM;
 
 	// --------INITIALIZE----------------
 	@PostConstruct
 	private void init() {
-		addDepartmentDM = new AddDepartmentDM();
+		departmentDM = new DepartmentDM();
+		employeeDM = new EmployeeDM();
 	}
 
 	// --------METHODS----------------
@@ -35,12 +38,12 @@ public class AddDepartmentController {
 		Department department = new Department();
 		department.setName(name);
 
-		Employee employee = addDepartmentDM.getEmployeeByPesel(managerPesel);
+		Employee employee = employeeDM.getEmployeeByPesel(managerPesel);
 		department.setManager(employee);
 
 		department.setPhone(phone);
 
-		addDepartmentDM.addDepartment(department);
+		departmentDM.addDepartment(department);
 
 		clearFields();
 

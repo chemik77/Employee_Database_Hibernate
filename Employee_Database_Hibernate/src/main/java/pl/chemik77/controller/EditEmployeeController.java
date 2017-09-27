@@ -9,7 +9,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import pl.chemik77.controller.utils.ContextUtil;
-import pl.chemik77.database.dataManager.AddEmployeeDM;
+import pl.chemik77.database.dataManager.DepartmentDM;
+import pl.chemik77.database.dataManager.EmployeeDM;
 import pl.chemik77.model.*;
 
 @ManagedBean
@@ -47,14 +48,16 @@ public class EditEmployeeController {
 
 	// --------FIELDS CONFIG---------
 
-	private AddEmployeeDM addEmployeeDM;
+	private EmployeeDM employeeDM;
+	private DepartmentDM departmentDM;
 
 	// --------INITIALIZE----------------
 
 	@PostConstruct
 	private void init() {
-		addEmployeeDM = new AddEmployeeDM();
-		departments = addEmployeeDM.getAllDepartments();
+		employeeDM = new EmployeeDM();
+		departmentDM = new DepartmentDM();
+		departments = departmentDM.getAllDepartments();
 	}
 
 	// --------METHODS----------------
@@ -106,7 +109,7 @@ public class EditEmployeeController {
 		personalInfo.setBirthDate(birthDate);
 		personalInfo.setPhoto(photo);
 		
-		addEmployeeDM.updateEmployee(selectedEmployee);
+		employeeDM.updateEmployee(selectedEmployee);
 		
 		ContextUtil.redirectTo("employees.jsf");
 	}

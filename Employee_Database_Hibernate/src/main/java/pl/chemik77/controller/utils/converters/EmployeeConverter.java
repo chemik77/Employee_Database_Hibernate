@@ -5,7 +5,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-import pl.chemik77.database.dataManager.AddDepartmentDM;
+import pl.chemik77.database.dataManager.EmployeeDM;
 import pl.chemik77.model.Employee;
 
 @FacesConverter(value="employeeConverter")
@@ -13,8 +13,8 @@ public class EmployeeConverter implements Converter {
 
 	@Override
 	public Object getAsObject(FacesContext arg0, UIComponent arg1, String string) {
-		AddDepartmentDM addDepartmentDM = new AddDepartmentDM();
-		Employee employeeByName = addDepartmentDM.getEmployeeByName(string);
+		EmployeeDM employeeDM = new EmployeeDM();
+		Employee employeeByName = employeeDM.getEmployeeByName(string);
 		return employeeByName;
 	}
 
