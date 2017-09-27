@@ -4,9 +4,10 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <h:head>
-	<title>Departments</title>
+	<title>Add department</title>
 	<link rel="stylesheet" href="css/style.css" type="text/css" />
 </h:head>
 <h:body>
@@ -16,7 +17,8 @@
 		<h5>Web Application</h5>
 	</div>
 	<div id="main">
-		<h3>Departments</h3>
+		<h3>Edit department</h3>
+
 
 		<h:form>
 
@@ -29,34 +31,33 @@
 			</div>
 		</h:form>
 
-
 		<h:form id="form">
 			<div id="content">
-				<p:dataTable id="departmentsTable" var="d"
-					value="#{departmentController.departments}"
-					columnClasses="nameColumn,contactColumn,editColumn">
-					<p:column>
-						<h:outputText value="#{d.name}" />
-						<br />
-						<h:outputText value="Manager: " />
-						<h:outputText value="#{d.manager}" />
-						<br />
-					</p:column>
-					<p:column>
-						<h:outputText value="#{d.phone}" />
-						<br />
-					</p:column>
-					<p:column>
-						<p:commandButton value="Edit" update="form"
-							actionListener="#{editDepartmentController.selectDepartment(d)}" />
-						<p:commandButton value="Delete" update="form"
-							actionListener="#{departmentController.deleteDepartment(d)}" />
-						<br />
-					</p:column>
-				</p:dataTable>
+				<p:panel id="panel">
+					<h:panelGrid columns="2" cellpadding="2">
+						<p:outputLabel value="Name" for="name" />
+						<p:inputText value="#{editDepartmentController.name}" id="name" />
+
+						<p:outputLabel value="Manager (pesel)" for="manager" />
+						<p:inputText value="#{editDepartmentController.managerPesel}"
+							id="manager" pt:placeholder="Pesel" />
+
+						<p:outputLabel value="Phone" for="phone" />
+						<p:inputText value="#{editDepartmentController.phone}" id="phone" />
+					</h:panelGrid>
+
+				</p:panel>
+				<p:toolbar>
+					<f:facet name="left">
+						<p:commandButton value="Save department" id="addButton"
+							update="panel"
+							actionListener="#{editDepartmentController.saveDepartment()}">
+						</p:commandButton>
+						<p:messages />
+					</f:facet>
+				</p:toolbar>
 			</div>
 		</h:form>
-
 	</div>
 	<div id="footer">
 		<h5>ver 1.0</h5>

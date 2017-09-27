@@ -56,10 +56,13 @@ public class AddEmployeeDM {
 	public void updateEmployee(Employee employee) {
 		connect();
 		
-//		Employee oldEmployee = entityManager.find(Employee.class, employee.getId());
-//		Department department = entityManager.find(Department.class, employee.getDepartment().getId());
-		
 		entityManager.getTransaction().begin();
+		if(employee.getDepartment_manager() != null) {
+			Employee oldEmployee = entityManager.find(Employee.class, employee.getId());
+			if(oldEmployee.getDepartment_manager() != employee.getDepartment_manager()) {
+				employee.setDepartment_manager(null);
+			}
+		}
 		entityManager.merge(employee);
 		entityManager.getTransaction().commit();
 		

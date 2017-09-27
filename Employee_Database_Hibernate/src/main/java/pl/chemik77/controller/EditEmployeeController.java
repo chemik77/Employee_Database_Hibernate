@@ -83,7 +83,7 @@ public class EditEmployeeController {
 		this.photo = employee.getPersonalInfo().getPhoto();
 	}
 
-	public void saveEmployee() {
+	public void saveEmployee() throws IOException {
 		selectedEmployee.setId(id);
 		selectedEmployee.setFirstName(firstName);
 		selectedEmployee.setLastName(lastName);
@@ -107,6 +107,8 @@ public class EditEmployeeController {
 		personalInfo.setPhoto(photo);
 		
 		addEmployeeDM.updateEmployee(selectedEmployee);
+		
+		ContextUtil.redirectTo("employees.jsf");
 	}
 
 	// --------GETTERS AND SETTERS----------------

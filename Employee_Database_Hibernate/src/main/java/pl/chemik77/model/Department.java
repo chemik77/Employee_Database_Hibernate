@@ -30,10 +30,10 @@ public class Department {
 	@Column(name = "last_update", columnDefinition = "datetime(0) DEFAULT NULL")
 	private LocalDateTime lastUpdate;
 
-	@OneToOne(mappedBy = "department_manager", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@OneToOne(mappedBy = "department_manager", cascade = CascadeType.PERSIST)
 	private Employee manager;
 
-	@OneToMany(mappedBy = "department", cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "department", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	@Fetch(value = FetchMode.SUBSELECT)
 	private List<Employee> employees;
 

@@ -97,5 +97,21 @@ public class AddDepartmentDM {
 
 		return employee;
 	}
+	
+	// 
+	public void updateDepartment(Department department) {
+		connect();
+		
+		entityManager.getTransaction().begin();
+		Employee manager = department.getManager();
+		department.getEmployees().add(manager);
+		manager.setDepartment(department);
+		manager.setDepartment_manager(department);
+		entityManager.merge(manager);
+		entityManager.merge(department);
+		entityManager.getTransaction().commit();
+		
+		disconnect();
+	}
 
 }
