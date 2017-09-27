@@ -72,10 +72,10 @@
 						<br />
 					</p:column>
 					<p:column>
-						<p:button value="Edit" outcome="editEmployee">
-						<f:param name="employee" value="#{e}"/>
-						</p:button>
-						<p:commandButton value="Delete" update="form" actionListener="#{employeeController.deleteEmployee(e)}" />
+						<p:commandButton value="Edit" update="form"
+							actionListener="#{editEmployeeController.selectEmployee(e)}" />
+						<p:commandButton value="Delete" update="form"
+							actionListener="#{employeeController.deleteEmployee(e)}" />
 						<br />
 						<br />
 						<br />

@@ -6,20 +6,19 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
 import pl.chemik77.controller.utils.ContextUtil;
 import pl.chemik77.database.dataManager.AddEmployeeDM;
 import pl.chemik77.model.*;
 
 @ManagedBean
-@RequestScoped
-public class AddEmployeeController {
+@SessionScoped
+public class EditEmployeeController {
 
 	// --------FIELDS----------------
 
-	private Employee selectedEmployee;
-
+	private int id;
 	private String firstName;
 	private String lastName;
 	private String office;
@@ -40,6 +39,8 @@ public class AddEmployeeController {
 	private LocalDate birthDate;
 	private String photo;
 
+	private Employee selectedEmployee;
+	
 	private Department department;
 
 	private List<Department> departments;
@@ -47,9 +48,9 @@ public class AddEmployeeController {
 	// --------FIELDS CONFIG---------
 
 	private AddEmployeeDM addEmployeeDM;
-	
+
 	// --------INITIALIZE----------------
-	
+
 	@PostConstruct
 	private void init() {
 		addEmployeeDM = new AddEmployeeDM();
@@ -58,55 +59,65 @@ public class AddEmployeeController {
 
 	// --------METHODS----------------
 
-	public void addEmployee() throws IOException {
+	public void selectEmployee(Employee employee) throws IOException {
 
-		Employee employee = new Employee();
-		employee.setFirstName(firstName);
-		employee.setLastName(lastName);
-		employee.setOffice(office);
-		employee.setSalary(salary);
-		employee.setHireDate(hireDate);
-		employee.setDepartment(department);
+		this.selectedEmployee = employee;
+		ContextUtil.redirectTo("editEmployee.jsf");
+		this.id = employee.getId();
+		this.firstName = employee.getFirstName();
+		this.lastName = employee.getLastName();
+		this.office = employee.getOffice();
+		this.salary = employee.getSalary();
+		this.hireDate = employee.getHireDate();
+		this.street = employee.getAddress().getStreet();
+		this.houseNo = employee.getAddress().getHouseNo();
+		this.zipCode = employee.getAddress().getZipCode();
+		this.city = employee.getAddress().getCity();
+		this.country = employee.getAddress().getCountry();
+		this.email = employee.getContact().getEmail();
+		this.phone = employee.getContact().getPhone();
+		this.department = employee.getDepartment();
+		this.pesel = employee.getPersonalInfo().getPesel();
+		this.gender = employee.getPersonalInfo().getGender();
+		this.birthDate = employee.getPersonalInfo().getBirthDate();
+		this.photo = employee.getPersonalInfo().getPhoto();
+	}
 
-		List<Employee> employees = department.getEmployees();
-		employees.add(employee);
-
-		Address address = new Address();
+	public void saveEmployee() {
+		selectedEmployee.setId(id);
+		selectedEmployee.setFirstName(firstName);
+		selectedEmployee.setLastName(lastName);
+		selectedEmployee.setOffice(office);
+		selectedEmployee.setSalary(salary);
+		selectedEmployee.setHireDate(hireDate);
+		Address address = selectedEmployee.getAddress();
 		address.setStreet(street);
 		address.setHouseNo(houseNo);
 		address.setZipCode(zipCode);
 		address.setCity(city);
 		address.setCountry(country);
-		address.setEmployee(employee);
-		employee.setAddress(address);
-
-		Contact contact = new Contact();
+		Contact contact = selectedEmployee.getContact();
 		contact.setEmail(email);
-		contact.setPhone("852 147 555");
-		contact.setEmployee(employee);
-		employee.setContact(contact);
-
-		PersonalInfo personalInfo = new PersonalInfo();
+		contact.setPhone(phone);
+		selectedEmployee.setDepartment(department);
+		PersonalInfo personalInfo = selectedEmployee.getPersonalInfo();
 		personalInfo.setPesel(pesel);
 		personalInfo.setGender(gender);
 		personalInfo.setBirthDate(birthDate);
-		photo += ".jpg";
 		personalInfo.setPhoto(photo);
-
-		employee.setPersonalInfo(personalInfo);
-		personalInfo.setEmployee(employee);
-
-		addEmployeeDM.addEmployee(employee);
-
-		clearFields();
-
-	}
-	
-	private void clearFields() throws IOException {
-		ContextUtil.redirectNewForm();
+		
+		addEmployeeDM.updateEmployee(selectedEmployee);
 	}
 
 	// --------GETTERS AND SETTERS----------------
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getFirstName() {
 		return firstName;
@@ -259,4 +270,5 @@ public class AddEmployeeController {
 	public void setSelectedEmployee(Employee selectedEmployee) {
 		this.selectedEmployee = selectedEmployee;
 	}
+
 }

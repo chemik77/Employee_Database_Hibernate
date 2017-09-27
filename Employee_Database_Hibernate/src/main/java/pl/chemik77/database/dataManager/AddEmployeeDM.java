@@ -51,4 +51,28 @@ public class AddEmployeeDM {
 		disconnect();
 		return departments;
 	}
+	
+	// UPDATE e FROM Employee e 
+	public void updateEmployee(Employee employee) {
+		connect();
+		
+//		Employee oldEmployee = entityManager.find(Employee.class, employee.getId());
+//		Department department = entityManager.find(Department.class, employee.getDepartment().getId());
+		
+		entityManager.getTransaction().begin();
+		entityManager.merge(employee);
+		entityManager.getTransaction().commit();
+		
+		disconnect();
+	}
+	
+	// 
+	public Employee findEmployeeById(int id) {
+		connect();
+		
+		Employee employee = entityManager.find(Employee.class, id);
+		
+		disconnect();
+		return employee;
+	}
 }

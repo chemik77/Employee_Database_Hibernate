@@ -1,11 +1,15 @@
 package pl.chemik77.controller;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
+import pl.chemik77.controller.utils.ContextUtil;
 import pl.chemik77.database.dataManager.EmployeeDM;
 import pl.chemik77.model.Employee;
 
@@ -58,6 +62,13 @@ public class EmployeeController {
 		} else {
 			employees = employeeDataManager.getEmployeesWord(word);
 		}
+	}
+
+	public void editEmployee() throws IOException {
+//		FacesContext fContext = FacesContext.getCurrentInstance();
+//		Map<String, String> params = fContext.getExternalContext().getRequestParameterMap();
+//		String string = params.get("selectedEmployee");
+		ContextUtil.redirectTo("editEmployee.jsf");
 	}
 
 	public void deleteEmployee(Employee employee) {

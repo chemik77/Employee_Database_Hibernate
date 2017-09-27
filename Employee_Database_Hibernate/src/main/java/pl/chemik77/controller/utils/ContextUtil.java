@@ -16,4 +16,10 @@ public class ContextUtil {
 	    ec.redirect((queryString == null) ? requestURL.toString() : requestURL.append('?').append(queryString).toString());
 		
 	}
+	
+	public static void redirectTo(String page) throws IOException {
+
+		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+		ec.redirect(ec.getRequestContextPath() + "/" + page);
+	}
 }
