@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import pl.chemik77.controller.utils.ContextUtil;
+import pl.chemik77.controller.utils.MessageUtil;
 import pl.chemik77.database.dataManager.DepartmentDM;
 import pl.chemik77.database.dataManager.EmployeeDM;
 import pl.chemik77.model.*;
@@ -111,7 +112,7 @@ public class EditEmployeeController {
 		
 		employeeDM.updateEmployee(selectedEmployee);
 		
-		ContextUtil.redirectTo("employees.jsf");
+		MessageUtil.addInfoMessage("Employee updated");
 	}
 
 	// --------GETTERS AND SETTERS----------------

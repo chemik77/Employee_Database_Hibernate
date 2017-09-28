@@ -30,12 +30,12 @@
 				<p:button outcome="addDepartment" value="+" />
 			</div>
 		</h:form>
-		
+
 		<h:form id="form">
 			<div id="content">
 				<p:panel id="panel">
+					<p:messages autoUpdate="true" />
 					<h:panelGrid columns="3" cellpadding="2">
-
 						<p:outputLabel value="First name" for="firstName" />
 						<p:inputText value="#{editEmployeeController.firstName}"
 							id="firstName" />
@@ -60,16 +60,19 @@
 						<p:inputText value="#{editEmployeeController.street}" id="street" />
 						<br />
 						<p:outputLabel value="House No" for="houseNo" />
-						<p:inputText value="#{editEmployeeController.houseNo}" id="houseNo" />
+						<p:inputText value="#{editEmployeeController.houseNo}"
+							id="houseNo" />
 						<br />
 						<p:outputLabel value="Zip code" for="zipCode" />
-						<p:inputText value="#{editEmployeeController.zipCode}" id="zipCode" />
+						<p:inputText value="#{editEmployeeController.zipCode}"
+							id="zipCode" />
 						<br />
 						<p:outputLabel value="City" for="city" />
 						<p:inputText value="#{editEmployeeController.city}" id="city" />
 						<br />
 						<p:outputLabel value="Country" for="country" />
-						<p:inputText value="#{editEmployeeController.country}" id="country" />
+						<p:inputText value="#{editEmployeeController.country}"
+							id="country" />
 						<br />
 						<p:outputLabel value="Email" for="email" />
 						<p:inputText value="#{editEmployeeController.email}" id="email" />
@@ -112,8 +115,8 @@
 				<p:toolbar>
 					<f:facet name="left">
 						<p:commandButton value="Save employee" id="addButton"
-							update="panel" actionListener="#{editEmployeeController.saveEmployee()}" />
-						<p:messages />
+							update="panel"
+							actionListener="#{editEmployeeController.saveEmployee()}" />
 					</f:facet>
 				</p:toolbar>
 			</div>

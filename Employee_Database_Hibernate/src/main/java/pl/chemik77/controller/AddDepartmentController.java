@@ -6,7 +6,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
-import pl.chemik77.controller.utils.ContextUtil;
+import pl.chemik77.controller.utils.MessageUtil;
 import pl.chemik77.database.dataManager.DepartmentDM;
 import pl.chemik77.database.dataManager.EmployeeDM;
 import pl.chemik77.model.Department;
@@ -45,12 +45,8 @@ public class AddDepartmentController {
 
 		departmentDM.addDepartment(department);
 
-		clearFields();
+		MessageUtil.addInfoMessage("New department saved");
 
-	}
-
-	private void clearFields() throws IOException {
-		ContextUtil.redirectNewForm();
 	}
 
 	// --------GETTERS AND SETTERS----------------

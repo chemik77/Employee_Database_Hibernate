@@ -22,4 +22,5 @@ public class ContextUtil {
 		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 		ec.redirect(ec.getRequestContextPath() + "/" + page);
 	}
+
 }

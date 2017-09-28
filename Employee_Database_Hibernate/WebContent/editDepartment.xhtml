@@ -34,6 +34,7 @@
 		<h:form id="form">
 			<div id="content">
 				<p:panel id="panel">
+					<p:messages autoUpdate="true" />
 					<h:panelGrid columns="2" cellpadding="2">
 						<p:outputLabel value="Name" for="name" />
 						<p:inputText value="#{editDepartmentController.name}" id="name" />
@@ -53,7 +54,6 @@
 							update="panel"
 							actionListener="#{editDepartmentController.saveDepartment()}">
 						</p:commandButton>
-						<p:messages />
 					</f:facet>
 				</p:toolbar>
 			</div>

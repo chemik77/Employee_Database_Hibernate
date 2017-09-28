@@ -2,12 +2,10 @@ package pl.chemik77.controller;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
 
 import pl.chemik77.controller.utils.ContextUtil;
 import pl.chemik77.database.dataManager.EmployeeDM;

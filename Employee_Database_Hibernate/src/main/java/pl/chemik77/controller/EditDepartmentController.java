@@ -7,6 +7,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import pl.chemik77.controller.utils.ContextUtil;
+import pl.chemik77.controller.utils.MessageUtil;
 import pl.chemik77.database.dataManager.DepartmentDM;
 import pl.chemik77.database.dataManager.EmployeeDM;
 import pl.chemik77.model.Department;
@@ -59,7 +60,8 @@ public class EditDepartmentController {
 
 		departmentDM.updateDepartment(selectedDepartment);
 
-		ContextUtil.redirectTo("departments.jsf");
+		MessageUtil.addInfoMessage("Department updated");
+
 	}
 
 	// --------GETTERS AND SETTERS----------------
