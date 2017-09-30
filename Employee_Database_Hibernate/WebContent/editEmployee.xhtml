@@ -35,51 +35,51 @@
 			<div id="content">
 				<p:panel id="panel">
 					<p:messages autoUpdate="true" />
-					<h:panelGrid columns="3" cellpadding="2">
+					<h:panelGrid columns="2" cellpadding="2">
 						<p:outputLabel value="First name" for="firstName" />
 						<p:inputText value="#{editEmployeeController.firstName}"
 							id="firstName" />
-						<br />
+						
 						<p:outputLabel value="Last name" for="lastName" />
 						<p:inputText value="#{editEmployeeController.lastName}"
 							id="lastName" />
-						<br />
+						
 						<p:outputLabel value="Office" for="office" />
 						<p:inputText value="#{editEmployeeController.office}" id="office" />
-						<br />
+						
 						<p:outputLabel value="Salary" for="salary" />
 						<p:inputText value="#{editEmployeeController.salary}" id="salary" />
-						<br />
+						
 						<p:outputLabel value="Hire date" for="hireDate" />
 						<p:calendar id="hireDate"
 							value="#{editEmployeeController.hireDate}"
 							converter="localDateConverter" navigator="true"
 							pattern="yyyy-MM-dd" pt:placeholder="yyyy-mm-dd" />
-						<br />
+						
 						<p:outputLabel value="Street" for="street" />
 						<p:inputText value="#{editEmployeeController.street}" id="street" />
-						<br />
+						
 						<p:outputLabel value="House No" for="houseNo" />
 						<p:inputText value="#{editEmployeeController.houseNo}"
 							id="houseNo" />
-						<br />
+						
 						<p:outputLabel value="Zip code" for="zipCode" />
 						<p:inputText value="#{editEmployeeController.zipCode}"
 							id="zipCode" />
-						<br />
+						
 						<p:outputLabel value="City" for="city" />
 						<p:inputText value="#{editEmployeeController.city}" id="city" />
-						<br />
+						
 						<p:outputLabel value="Country" for="country" />
 						<p:inputText value="#{editEmployeeController.country}"
 							id="country" />
-						<br />
+						
 						<p:outputLabel value="Email" for="email" />
 						<p:inputText value="#{editEmployeeController.email}" id="email" />
-						<br />
+						
 						<p:outputLabel value="Phone" for="phone" />
 						<p:inputText value="#{editEmployeeController.phone}" id="phone" />
-						<br />
+						
 
 						<p:outputLabel value="Department" for="department" />
 
@@ -88,27 +88,32 @@
 							<f:selectItems value="#{editEmployeeController.departments}" />
 							<f:converter converterId="departmentConverter" />
 						</p:selectOneMenu>
-						<br />
+					
 						<p:outputLabel value="Pesel" for="pesel" />
 						<p:inputText value="#{editEmployeeController.pesel}" id="pesel" />
-						<br />
+						
 						<p:outputLabel value="Gender" for="gender" />
 						<p:selectOneRadio value="#{editEmployeeController.gender}"
 							id="gender">
 							<f:selectItem itemValue="F" itemLabel="female" />
 							<f:selectItem itemValue="M" itemLabel="male" />
 						</p:selectOneRadio>
-						<br />
+						
 						<p:outputLabel value="Date of birth" for="birthDate" />
 						<p:calendar id="birthDate"
 							value="#{editEmployeeController.birthDate}"
 							converter="localDateConverter" navigator="true"
 							pattern="yyyy-MM-dd" pt:placeholder="yyyy-mm-dd" />
-						<br />
+						
 						<p:outputLabel value="Photo" for="photo" />
-						<p:inputText value="#{editEmployeeController.photo}" id="photo"
-							pt:placeholder="nazwisko_imie" />
-						<p:outputLabel value=".jpg" />
+						<p:outputLabel value="#{editEmployeeController.photo}" id="photo" />
+						
+						<p:outputLabel value="Upload photo" for="uploadPhoto" />
+						<p:fileUpload id="uploadPhoto" fileUploadListener="#{editEmployeeController.uploadFile}" mode="advanced" 
+						update="messages" fileLimit="1" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+						
+						<p:growl id="messages" />
+						
 					</h:panelGrid>
 
 				</p:panel>

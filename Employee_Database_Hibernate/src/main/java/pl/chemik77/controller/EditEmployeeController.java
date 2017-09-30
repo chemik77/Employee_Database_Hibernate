@@ -1,12 +1,17 @@
 package pl.chemik77.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDate;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+
+import org.primefaces.event.FileUploadEvent;
 
 import pl.chemik77.controller.utils.ContextUtil;
 import pl.chemik77.controller.utils.MessageUtil;
@@ -113,6 +118,28 @@ public class EditEmployeeController {
 		employeeDM.updateEmployee(selectedEmployee);
 		
 		MessageUtil.addInfoMessage("Employee updated");
+	}
+	
+	public void uploadFile(FileUploadEvent event) throws IOException {
+		InputStream input = event.getFile().getInputstream();
+		String fileName = event.getFile().getFileName();
+		
+		photo = fileName;
+		File file = new File("../Employee_Database_Hibernate/WebContent/resources/photos/" + fileName);
+
+		if (!file.exists()) {
+			file.createNewFile();
+		}
+		FileOutputStream output = new FileOutputStream(file);
+		byte[] buffer = new byte[1024];
+		int length;
+		while ((length = input.read(buffer)) > 0) {
+			output.write(buffer, 0, length);
+		}
+		input.close();
+		output.close();
+
+		MessageUtil.addInfoMessage("Succesful " + fileName + " is uploaded");
 	}
 
 	// --------GETTERS AND SETTERS----------------
