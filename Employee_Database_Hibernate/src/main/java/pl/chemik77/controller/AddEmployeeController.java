@@ -1,12 +1,17 @@
 package pl.chemik77.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDate;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
+
+import org.primefaces.event.FileUploadEvent;
 
 import pl.chemik77.controller.utils.MessageUtil;
 import pl.chemik77.database.dataManager.DepartmentDM;
@@ -14,7 +19,7 @@ import pl.chemik77.database.dataManager.EmployeeDM;
 import pl.chemik77.model.*;
 
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class AddEmployeeController {
 
 	// --------FIELDS----------------
@@ -49,9 +54,9 @@ public class AddEmployeeController {
 
 	private EmployeeDM employeeDM;
 	private DepartmentDM departmentDM;
-	
+
 	// --------INITIALIZE----------------
-	
+
 	@PostConstruct
 	private void init() {
 		employeeDM = new EmployeeDM();
@@ -93,7 +98,6 @@ public class AddEmployeeController {
 		personalInfo.setPesel(pesel);
 		personalInfo.setGender(gender);
 		personalInfo.setBirthDate(birthDate);
-		photo += ".jpg";
 		personalInfo.setPhoto(photo);
 
 		employee.setPersonalInfo(personalInfo);
@@ -104,7 +108,28 @@ public class AddEmployeeController {
 		MessageUtil.addInfoMessage("New employee saved");
 
 	}
-	
+
+	public void uploadFile(FileUploadEvent event) throws IOException {
+		InputStream input = event.getFile().getInputstream();
+		String fileName = event.getFile().getFileName();
+		
+		photo = fileName;
+		File file = new File("../Employee_Database_Hibernate/WebContent/resources/photos/" + fileName);
+
+		if (!file.exists()) {
+			file.createNewFile();
+		}
+		FileOutputStream output = new FileOutputStream(file);
+		byte[] buffer = new byte[1024];
+		int length;
+		while ((length = input.read(buffer)) > 0) {
+			output.write(buffer, 0, length);
+		}
+		input.close();
+		output.close();
+
+		MessageUtil.addInfoMessage("Succesful " + fileName + " is uploaded");
+	}
 
 	// --------GETTERS AND SETTERS----------------
 
@@ -259,4 +284,5 @@ public class AddEmployeeController {
 	public void setSelectedEmployee(Employee selectedEmployee) {
 		this.selectedEmployee = selectedEmployee;
 	}
+
 }

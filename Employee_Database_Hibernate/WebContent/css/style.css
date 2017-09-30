@@ -72,6 +72,13 @@ a {
 .photoColumn {
 	width: 100.0px;
 }
+.photoEmployee {
+	height: auto; 
+    width: auto; 
+    max-width: 100px; 
+    max-height: 100px;
+}
+
 .nameColumn {
 	width: 400.0px;
 }

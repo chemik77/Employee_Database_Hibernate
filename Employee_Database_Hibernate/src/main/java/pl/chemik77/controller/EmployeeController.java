@@ -63,9 +63,7 @@ public class EmployeeController {
 	}
 
 	public void editEmployee() throws IOException {
-//		FacesContext fContext = FacesContext.getCurrentInstance();
-//		Map<String, String> params = fContext.getExternalContext().getRequestParameterMap();
-//		String string = params.get("selectedEmployee");
+
 		ContextUtil.redirectTo("editEmployee.jsf");
 	}
 
