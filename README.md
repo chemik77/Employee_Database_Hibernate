@@ -1,14 +1,38 @@
 # Employee_Database_Hibernate
-Employee Manager Web Application using Hibernate &amp; JSF2.2
+
+A web application project managing company database, which contains departments, employees and their personal details. 
+
+Application allows to:
+- Display departments list
+- Add new depratments
+- Edit departments
+-	Delete departments
+-	Display employees list
+-	Searching employees by given criteria
+-	Add new employees
+-	Edit employees
+-	Delete employees
+
+Specification: 
+-	Compatible with Java SE 8 and Java EE 7
+-	Uses Facelets technology
+-	Uses JSF 2.2 framwork
+-	Uses PrimeFaces library UI components
+-	Uses Hibernate framework
+-	Adapted to MySQL relational database management system
+-	Uses Criteria API to create SQL queries
+-	For tests uses Arquillian platform
+-	Designed by MVC architectural pattern
+-	Uses Maven to build application
 
 
-Images ver1.0
-![alt text](https://user-images.githubusercontent.com/26229244/30353004-b765e580-9823-11e7-948c-8b0530bb5d63.png)
-![alt text](https://user-images.githubusercontent.com/26229244/30353007-bacc1af0-9823-11e7-9e34-b6a3826bdd65.png)
-![alt text](https://user-images.githubusercontent.com/26229244/30353008-bc4f3952-9823-11e7-89ab-e14b7e7a24a9.png)
-![alt text](https://user-images.githubusercontent.com/26229244/30353009-bdef35dc-9823-11e7-8f5c-439b59829aba.png)
-![alt text](https://user-images.githubusercontent.com/26229244/30353012-bfc03aaa-9823-11e7-8eac-97c759226298.png)
-![alt text](https://user-images.githubusercontent.com/26229244/30353014-c161d710-9823-11e7-92b7-b3d54997aba2.png)
-![alt text](https://user-images.githubusercontent.com/26229244/30353015-c2f4ab52-9823-11e7-929f-8e92797ccfb7.png)
-![alt text](https://user-images.githubusercontent.com/26229244/30353019-c4707470-9823-11e7-8f98-aa7cd6b8bb29.png)
-![alt text](https://user-images.githubusercontent.com/26229244/30353020-c5ce69f8-9823-11e7-9d41-111be0afd979.png)
+
+Images ver1.1
+![alt text](https://user-images.githubusercontent.com/26229244/31057782-87fa5690-a6e8-11e7-86c8-dbd952ceadda.png)
+![alt text](https://user-images.githubusercontent.com/26229244/31057783-89e4316a-a6e8-11e7-8a52-5445f72c56c0.png)
+![alt text](https://user-images.githubusercontent.com/26229244/31057784-8b527b10-a6e8-11e7-9032-538dc9eb24bf.png)
+![alt text](https://user-images.githubusercontent.com/26229244/31057787-8dff9e88-a6e8-11e7-8cf4-4aaafc678303.png)
+![alt text](https://user-images.githubusercontent.com/26229244/31057788-8f9501fc-a6e8-11e7-9452-5f2187ecee71.png)
+![alt text](https://user-images.githubusercontent.com/26229244/31057789-910b6a30-a6e8-11e7-9d87-256d38278090.png)
+![alt text](https://user-images.githubusercontent.com/26229244/31057791-92b3def8-a6e8-11e7-8f4c-a9ff467268c0.png)
+![alt text](https://user-images.githubusercontent.com/26229244/31057792-940d28e0-a6e8-11e7-9282-fe733510fd15.png)
