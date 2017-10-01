@@ -32,11 +32,11 @@
 				<div id="letters">
 					<h:commandButton
 						action="#{employeeController.initEmployeesLetter('All')}"
-						value="All" />
+						value="All" styleClass="letterBtn" />
 					<ui:repeat var="l" value="#{pageController.letters}">
 						<h:commandButton
 							action="#{employeeController.initEmployeesLetter(l)}"
-							value="#{l}" />
+							value="#{l}" styleClass="letterBtn" />
 					</ui:repeat>
 				</div>
 
@@ -44,20 +44,20 @@
 					<h:inputText id="search" value="#{employeeController.word}"
 						pt:placeholder="Search employee..." />
 					<h:commandButton action="#{employeeController.searchEmployee()}"
-						value="Search" />
+						value="Search" styleClass="searchBtn" />
 				</div>
 
 				<p:dataTable var="e" value="#{employeeController.employees}"
 					reflow="true" rows="3" paginator="true"
 					columnClasses="photoColumn,nameColumn,contactColumn,editColumn">
 					<p:column width="150">
-						<h:graphicImage styleClass="photoEmployee"
-							value="resources/photos/#{e.personalInfo.photo}" height="100" />
+						<h:graphicImage value="resources/photos/#{e.personalInfo.photo}"
+							height="100" />
 					</p:column>
 					<p:column>
 						<h:outputText value="#{e}" />
 						<br />
-						<h:outputText value="#{e.office}" />
+						<h:outputText value="#{e.office}" styleClass="officeOutput" />
 						<br />
 						<h:outputText value="#{e.department.name}" />
 						<br />

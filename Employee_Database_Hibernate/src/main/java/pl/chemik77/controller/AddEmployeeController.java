@@ -90,7 +90,7 @@ public class AddEmployeeController {
 
 		Contact contact = new Contact();
 		contact.setEmail(email);
-		contact.setPhone("852 147 555");
+		contact.setPhone(phone);
 		contact.setEmployee(employee);
 		employee.setContact(contact);
 

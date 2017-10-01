@@ -103,9 +103,7 @@
 						<p:message for="department" />
 
 						<p:outputLabel value="Pesel" for="pesel" />
-						<p:inputText value="#{editEmployeeController.pesel}" id="pesel">
-							<f:validateLength minimum="11" maximum="11" />
-						</p:inputText>
+						<p:inputMask value="#{editEmployeeController.pesel}" id="pesel" mask="99999999999" />
 						<p:message for="pesel" />
 
 						<p:outputLabel value="Gender" for="gender" />
@@ -125,6 +123,7 @@
 
 						<p:outputLabel value="Photo" for="photo" />
 						<p:outputLabel value="#{editEmployeeController.photo}" id="photo" />
+						<br />
 
 						<p:outputLabel value="Upload photo" for="uploadPhoto" />
 						<p:fileUpload id="uploadPhoto"

@@ -101,9 +101,7 @@
 						<p:message for="department" />
 
 						<p:outputLabel value="Pesel" for="pesel" />
-						<p:inputText value="#{addEmployeeController.pesel}" id="pesel">
-							<f:validateLength minimum="11" maximum="11" />
-						</p:inputText>
+						<p:inputMask value="#{addEmployeeController.pesel}" id="pesel" mask="99999999999" />
 						<p:message for="pesel" />
 
 						<p:outputLabel value="Gender" for="gender" />
@@ -137,6 +135,11 @@
 						<p:commandButton value="Add employee" id="addButton"
 							update="panel" action="#{addEmployeeController.addEmployee()}" />
 						<p:messages />
+					</f:facet>
+					<f:facet name="right">
+						<p:commandButton value="Reset" update="panel" process="@this">
+							<p:resetInput target="panel" />
+						</p:commandButton>
 					</f:facet>
 				</p:toolbar>
 			</div>

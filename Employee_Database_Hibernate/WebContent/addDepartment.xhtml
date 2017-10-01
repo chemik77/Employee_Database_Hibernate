@@ -42,10 +42,8 @@
 						<p:message for="name" />
 
 						<p:outputLabel value="Manager (pesel)" for="manager" />
-						<p:inputText value="#{addDepartmentController.managerPesel}"
-							id="manager" pt:placeholder="Pesel">
-							<f:validateLength minimum="11" maximum="11" />
-						</p:inputText>
+						<p:inputMask value="#{addDepartmentController.managerPesel}"
+							id="manager" pt:placeholder="Pesel" mask="99999999999" />
 						<p:message for="manager" />
 
 						<p:outputLabel value="Phone" for="phone" />
@@ -64,6 +62,11 @@
 							actionListener="#{addDepartmentController.addDepartment()}">
 						</p:commandButton>
 						<p:messages />
+					</f:facet>
+					<f:facet name="right">
+						<p:commandButton value="Reset" update="panel" process="@this">
+							<p:resetInput target="panel" />
+						</p:commandButton>
 					</f:facet>
 				</p:toolbar>
 			</div>

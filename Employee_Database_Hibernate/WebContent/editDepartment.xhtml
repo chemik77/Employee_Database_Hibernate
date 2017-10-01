@@ -42,10 +42,8 @@
 						<p:message for="name" />
 
 						<p:outputLabel value="Manager (pesel)" for="manager" />
-						<p:inputText value="#{editDepartmentController.managerPesel}"
-							id="manager" pt:placeholder="Pesel">
-							<f:validateLength minimum="11" maximum="11" />
-						</p:inputText>
+						<p:inputMask value="#{editDepartmentController.managerPesel}"
+							id="manager" pt:placeholder="Pesel" mask="99999999999" />
 						<p:message for="manager" />
 
 						<p:outputLabel value="Phone" for="phone" />
