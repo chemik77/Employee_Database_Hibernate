@@ -119,10 +119,14 @@
 							pattern="yyyy-MM-dd" pt:placeholder="yyyy-mm-dd" />
 						<p:message for="birthDate" />
 
-						<p:outputLabel value="Upload photo" for="photo" />
-						<p:fileUpload id="photo"
+						<p:outputLabel value="Photo" for="photo" />
+						<p:outputLabel value="#{addEmployeeController.photo}" id="photo" />
+						<br />
+
+						<p:outputLabel value="Upload photo" for="uploadPhoto" />
+						<p:fileUpload id="uploadPhoto"
 							fileUploadListener="#{addEmployeeController.uploadFile}"
-							mode="advanced" update="messages" fileLimit="1"
+							mode="advanced" update="photo,messages" fileLimit="1"
 							allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
 
 						<p:growl id="messages" />

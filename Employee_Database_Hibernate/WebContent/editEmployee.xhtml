@@ -122,14 +122,14 @@
 						<p:message for="birthDate" />
 
 						<p:outputLabel value="Photo" for="photo" />
-						<p:outputLabel value="#{editEmployeeController.photo}" id="photo" />
+						<p:outputLabel value="#{editEmployeeController.photo}" id="photo"  />
 						<br />
 
 						<p:outputLabel value="Upload photo" for="uploadPhoto" />
 						<p:fileUpload id="uploadPhoto"
 							fileUploadListener="#{editEmployeeController.uploadFile}"
 							mode="advanced" update="messages" fileLimit="1"
-							allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+							allowTypes="/(\.|\/)(gif|jpe?g|png)$/"  />
 
 						<p:growl id="messages" />
 

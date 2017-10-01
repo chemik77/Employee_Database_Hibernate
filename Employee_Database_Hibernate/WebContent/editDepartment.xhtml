@@ -40,6 +40,10 @@
 						<p:inputText value="#{editDepartmentController.name}" id="name"
 							required="true" />
 						<p:message for="name" />
+						
+						<p:outputLabel value="Manager:" for="managerName" />
+						<p:outputLabel value="#{editDepartmentController.selectedDepartment.manager}" id="managerName" />
+						<br />
 
 						<p:outputLabel value="Manager (pesel)" for="manager" />
 						<p:inputMask value="#{editDepartmentController.managerPesel}"
