@@ -35,16 +35,25 @@
 			<div id="content">
 				<p:panel id="panel">
 					<p:messages autoUpdate="true" />
-					<h:panelGrid columns="2" cellpadding="2">
+					<h:panelGrid columns="3" cellpadding="2">
 						<p:outputLabel value="Name" for="name" />
-						<p:inputText value="#{addDepartmentController.name}" id="name" />
+						<p:inputText value="#{addDepartmentController.name}" id="name"
+							required="true" />
+						<p:message for="name" />
 
 						<p:outputLabel value="Manager (pesel)" for="manager" />
 						<p:inputText value="#{addDepartmentController.managerPesel}"
-							id="manager" pt:placeholder="Pesel" />
+							id="manager" pt:placeholder="Pesel">
+							<f:validateLength minimum="11" maximum="11" />
+						</p:inputText>
+						<p:message for="manager" />
 
 						<p:outputLabel value="Phone" for="phone" />
-						<p:inputText value="#{addDepartmentController.phone}" id="phone" />
+						<p:inputMask value="#{addDepartmentController.phone}" id="phone"
+							mask="99 999 99 99" />
+						<p:message for="phone" />
+
+						<p:growl id="messages" />
 					</h:panelGrid>
 
 				</p:panel>
@@ -61,7 +70,7 @@
 		</h:form>
 	</div>
 	<div id="footer">
-		<h5>ver 1.0</h5>
+		<h5>ver 1.1</h5>
 	</div>
 </h:body>
 </html>
