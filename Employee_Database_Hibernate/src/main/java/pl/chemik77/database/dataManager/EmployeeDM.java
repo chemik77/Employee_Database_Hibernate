@@ -1,5 +1,6 @@
 package pl.chemik77.database.dataManager;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -121,8 +122,12 @@ public class EmployeeDM {
 		q.select(p).where(cb.equal(peselPath, pesel));
 
 		TypedQuery<PersonalInfo> typedQuery = entityManager.createQuery(q);
-		PersonalInfo personalInfo = typedQuery.getSingleResult();
 
+		List<PersonalInfo> pInfos = typedQuery.getResultList();
+		PersonalInfo personalInfo = null;
+		if (pInfos.size() != 0) {
+			personalInfo = pInfos.get(0);
+		}
 		disconnect();
 		return personalInfo;
 	}
@@ -131,7 +136,10 @@ public class EmployeeDM {
 	public Employee getEmployeeByPesel(String pesel) {
 
 		PersonalInfo personalInfo = getPersonalInfoByPesel(pesel);
-		Employee employee = personalInfo.getEmployee();
+		Employee employee = null;
+		if (personalInfo != null) {
+			employee = personalInfo.getEmployee();
+		}
 
 		return employee;
 	}
@@ -183,6 +191,7 @@ public class EmployeeDM {
 				employee.setDepartment_manager(null);
 			}
 		}
+		employee.setLastUpdate(LocalDateTime.now().withNano(0));
 		entityManager.merge(employee);
 		entityManager.getTransaction().commit();
 

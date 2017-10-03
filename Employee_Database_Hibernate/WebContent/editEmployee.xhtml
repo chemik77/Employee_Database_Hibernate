@@ -103,7 +103,8 @@
 						<p:message for="department" />
 
 						<p:outputLabel value="Pesel" for="pesel" />
-						<p:inputMask value="#{editEmployeeController.pesel}" id="pesel" mask="99999999999" />
+						<p:inputMask value="#{editEmployeeController.pesel}" id="pesel"
+							mask="99999999999" required="true" />
 						<p:message for="pesel" />
 
 						<p:outputLabel value="Gender" for="gender" />
@@ -122,14 +123,14 @@
 						<p:message for="birthDate" />
 
 						<p:outputLabel value="Photo" for="photo" />
-						<p:outputLabel value="#{editEmployeeController.photo}" id="photo"  />
+						<p:outputLabel value="#{editEmployeeController.photo}" id="photo" />
 						<br />
 
 						<p:outputLabel value="Upload photo" for="uploadPhoto" />
 						<p:fileUpload id="uploadPhoto"
 							fileUploadListener="#{editEmployeeController.uploadFile}"
 							mode="advanced" update="messages" fileLimit="1"
-							allowTypes="/(\.|\/)(gif|jpe?g|png)$/"  />
+							allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
 
 						<p:growl id="messages" />
 
@@ -141,6 +142,9 @@
 						<p:commandButton value="Save employee" id="addButton"
 							update="panel"
 							actionListener="#{editEmployeeController.saveEmployee()}" />
+					</f:facet>
+					<f:facet name="right">
+						<p:button outcome="employees" value="Cancel" />
 					</f:facet>
 				</p:toolbar>
 			</div>

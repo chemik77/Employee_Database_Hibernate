@@ -1,10 +1,9 @@
 package pl.chemik77.controller;
 
-import java.io.IOException;
-
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.persistence.NoResultException;
 
 import pl.chemik77.controller.utils.MessageUtil;
 import pl.chemik77.database.dataManager.DepartmentDM;
@@ -33,19 +32,30 @@ public class AddDepartmentController {
 	}
 
 	// --------METHODS----------------
-	public void addDepartment() throws IOException {
+	public void addDepartment() {
 
 		Department department = new Department();
 		department.setName(name);
 
-		Employee employee = employeeDM.getEmployeeByPesel(managerPesel);
-		department.setManager(employee);
+		Employee employee = null;
+		try {
+			employee = employeeDM.getEmployeeByPesel(managerPesel);
+		} catch (NoResultException nre) {
+			MessageUtil.showErrorMessage("Nie znaleziono pracownika o podanym peselu!");
+		}
 
+		department.setManager(employee);
 		department.setPhone(phone);
 
-		departmentDM.addDepartment(department);
+		Department departmentByName = departmentDM.getDepartmentByName(name);
+		if (department.equals(departmentByName)) {
+			MessageUtil.showErrorMessage("Department exists!");
+		} else {
+			departmentDM.addDepartment(department);
 
-		MessageUtil.addInfoMessage("New department saved");
+			MessageUtil.addInfoMessage("New department saved");
+
+		}
 
 	}
 

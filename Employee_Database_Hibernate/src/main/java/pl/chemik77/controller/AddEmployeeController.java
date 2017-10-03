@@ -103,18 +103,26 @@ public class AddEmployeeController {
 		employee.setPersonalInfo(personalInfo);
 		personalInfo.setEmployee(employee);
 
-		employeeDM.addEmployee(employee);
+		Employee employeeByPesel = employeeDM.getEmployeeByPesel(pesel);
+		if (employee.equals(employeeByPesel)) {
+			MessageUtil.showErrorMessage("Employee exists!");
 
-		MessageUtil.addInfoMessage("New employee saved");
+		} else {
+			employeeDM.addEmployee(employee);
+
+			MessageUtil.addInfoMessage("New employee saved");
+		}
 
 	}
 
 	public void uploadFile(FileUploadEvent event) throws IOException {
 		InputStream input = event.getFile().getInputstream();
 		String fileName = event.getFile().getFileName();
-		
+
 		photo = fileName;
-		File file = new File("../Employee_Database_Hibernate/WebContent/resources/photos/" + fileName);
+		File file = new File(
+				"../Employee_Database_Hibernate/WebContent/resources/photos/"
+						+ fileName);
 
 		if (!file.exists()) {
 			file.createNewFile();

@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.persistence.NoResultException;
 
 import pl.chemik77.controller.utils.ContextUtil;
 import pl.chemik77.controller.utils.MessageUtil;
@@ -38,10 +39,14 @@ public class EditDepartmentController {
 
 	// --------METHODS----------------
 
-	public void selectDepartment(Department department) throws IOException {
+	public void selectDepartment(Department department) {
 
 		this.selectedDepartment = department;
-		ContextUtil.redirectTo("editDepartment.jsf");
+		try {
+			ContextUtil.redirectTo("editDepartment.jsf");
+		} catch (IOException e) {
+			MessageUtil.showErrorMessage(e.getMessage());
+		}
 		this.id = department.getId();
 		this.name = department.getName();
 		if (department.getManager() != null) {
@@ -51,14 +56,21 @@ public class EditDepartmentController {
 
 	}
 
-	public void saveDepartment() throws IOException {
+	public void saveDepartment() {
+		
 		selectedDepartment.setId(id);
 		selectedDepartment.setName(name);
-		Employee employeeByPesel = employeeDM.getEmployeeByPesel(managerPesel);
+		Employee employeeByPesel = null;
+		try {
+			employeeByPesel = employeeDM.getEmployeeByPesel(managerPesel);
+		} catch (NoResultException nre) {
+			MessageUtil.showErrorMessage("Employee not found by given pesel!");
+		}
+		Employee oldManager = selectedDepartment.getManager();
 		selectedDepartment.setManager(employeeByPesel);
 		selectedDepartment.setPhone(phone);
 
-		departmentDM.updateDepartment(selectedDepartment);
+		departmentDM.updateDepartment(selectedDepartment, oldManager);
 
 		MessageUtil.addInfoMessage("Department updated");
 

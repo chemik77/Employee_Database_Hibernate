@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -47,7 +48,7 @@ public class EditEmployeeController {
 	private String photo;
 
 	private Employee selectedEmployee;
-	
+
 	private Department department;
 
 	private List<Department> departments;
@@ -105,27 +106,32 @@ public class EditEmployeeController {
 		address.setZipCode(zipCode);
 		address.setCity(city);
 		address.setCountry(country);
+		address.setLastUpdate(LocalDateTime.now().withNano(0));
 		Contact contact = selectedEmployee.getContact();
 		contact.setEmail(email);
 		contact.setPhone(phone);
+		contact.setLastUpdate(LocalDateTime.now().withNano(0));
 		selectedEmployee.setDepartment(department);
 		PersonalInfo personalInfo = selectedEmployee.getPersonalInfo();
 		personalInfo.setPesel(pesel);
 		personalInfo.setGender(gender);
 		personalInfo.setBirthDate(birthDate);
 		personalInfo.setPhoto(photo);
-		
+		personalInfo.setLastUpdate(LocalDateTime.now().withNano(0));
+
 		employeeDM.updateEmployee(selectedEmployee);
-		
+
 		MessageUtil.addInfoMessage("Employee updated");
 	}
-	
+
 	public void uploadFile(FileUploadEvent event) throws IOException {
 		InputStream input = event.getFile().getInputstream();
 		String fileName = event.getFile().getFileName();
-		
+
 		photo = fileName;
-		File file = new File("../Employee_Database_Hibernate/WebContent/resources/photos/" + fileName);
+		File file = new File(
+				"../Employee_Database_Hibernate/WebContent/resources/photos/"
+						+ fileName);
 
 		if (!file.exists()) {
 			file.createNewFile();

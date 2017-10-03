@@ -1,5 +1,6 @@
 package pl.chemik77.database.dataManager;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -98,6 +99,7 @@ public class DepartmentDM {
 		Employee man = entityManager.find(Employee.class, department.getManager().getId());
 		man.setDepartment(department);
 		man.setDepartment_manager(department);
+		man.setLastUpdate(LocalDateTime.now().withNano(0));
 		department.setManager(man);
 
 		List<Employee> employees = new ArrayList<Employee>();
@@ -111,14 +113,22 @@ public class DepartmentDM {
 	}
 
 	// UPDATE Department
-	public void updateDepartment(Department department) {
+	public void updateDepartment(Department department, Employee oldManager) {
 		connect();
 
 		entityManager.getTransaction().begin();
+		if (oldManager != null) {
+			oldManager.setDepartment_manager(null);
+			entityManager.merge(oldManager);
+		}
+
 		Employee manager = department.getManager();
 		department.getEmployees().add(manager);
+		department.setLastUpdate(LocalDateTime.now().withNano(0));
 		manager.setDepartment(department);
 		manager.setDepartment_manager(department);
+		manager.setLastUpdate(LocalDateTime.now().withNano(0));
+
 		entityManager.merge(manager);
 		entityManager.merge(department);
 		entityManager.getTransaction().commit();

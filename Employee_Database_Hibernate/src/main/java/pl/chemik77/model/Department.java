@@ -107,7 +107,6 @@ public class Department {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
 		return result;
@@ -125,9 +124,6 @@ public class Department {
 			return false;
 		}
 		Department other = (Department) obj;
-		if (id != other.id) {
-			return false;
-		}
 		if (name == null) {
 			if (other.name != null) {
 				return false;

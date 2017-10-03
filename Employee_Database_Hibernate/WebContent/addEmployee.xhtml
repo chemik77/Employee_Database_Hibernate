@@ -101,7 +101,8 @@
 						<p:message for="department" />
 
 						<p:outputLabel value="Pesel" for="pesel" />
-						<p:inputMask value="#{addEmployeeController.pesel}" id="pesel" mask="99999999999" />
+						<p:inputMask value="#{addEmployeeController.pesel}" id="pesel"
+							mask="99999999999" required="true" />
 						<p:message for="pesel" />
 
 						<p:outputLabel value="Gender" for="gender" />
@@ -144,6 +145,7 @@
 						<p:commandButton value="Reset" update="panel" process="@this">
 							<p:resetInput target="panel" />
 						</p:commandButton>
+						<p:button outcome="employees" value="Cancel" />
 					</f:facet>
 				</p:toolbar>
 			</div>
